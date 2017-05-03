@@ -3,3 +3,4 @@ config.codekit3
 *.css
 *.css.map
 cached/**
+.DS_Store
