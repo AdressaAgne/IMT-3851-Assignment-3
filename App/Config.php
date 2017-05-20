@@ -97,6 +97,8 @@ class Config {
         '\App\Container\Helpers\Cache'          => 'Cache',
         '\App\Container\Helpers\Request'        => 'Request',
         '\App\Controllers\Controller'           => 'BaseController',
+        '\App\Container\Helpers\Protocol'       => 'Protocol',
+        '\App\Container\Helpers\FilterHandler'  => 'FilterHandler',
 
         // Interfaces
         

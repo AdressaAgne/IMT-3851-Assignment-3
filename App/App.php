@@ -1,12 +1,12 @@
 <?php
 namespace App;
 
-use RouteHandler, Cache, Config;
+use RouteHandler, Cache, Config, Protocol;
 
 class App extends RouteHandler{
 
     public function __construct(){
-
+        
         // CSRF token - Cross-site Request Forgery
         $this->set_csrf();
         
@@ -20,14 +20,11 @@ class App extends RouteHandler{
         } else {
             $page = $this->get_page_data();
             
-            // create a cahced version of the file if it exists
-            if(isset($page->filter['cache']) && $page->filter['cache']) $cache->cache_file($page->data);
-            
-            if(gettype($page->data) == 'string'){
-                echo $page->data;
+            if(gettype($page) == 'string'){
+                echo $page;
             } else {
                 header('Content-type: application/json');
-                echo json_encode($page->data, JSON_UNESCAPED_UNICODE);
+                echo json_encode($page, JSON_UNESCAPED_UNICODE);
                 return;
             }
         }

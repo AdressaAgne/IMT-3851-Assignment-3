@@ -2,7 +2,7 @@
 
 namespace App\Container\Routing;
 
-use ErrorHandling, Config, Direct, Route, Request;
+use ErrorHandling, Config, Direct, Route, Request, FilterHandler;
 use ReflectionParameter, ReflectionException;
 
 class RouteHandler{
@@ -93,11 +93,13 @@ class RouteHandler{
      * @return string
      */
     public function get_page_data(){
-        //Direct::dd($this->route);
-        return (object)[
-            'data' => $this->callController($this->get_page()),
-            'filter' => isset($this->route['filter']) ? $this->route['filter'] : [],
-        ];
+        $page = $this->callController($this->get_page());
+
+        if(isset($this->route['filter'])){
+            FilterHandler::filter($this->route['filter'], $page);
+        }
+
+        return $page;
     }
     
     /**

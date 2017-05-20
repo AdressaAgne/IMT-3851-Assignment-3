@@ -27,7 +27,7 @@
 
 
 // Mainpage
-Direct::get("/", 'MainController@index');
+Direct::get("/", 'MainController@index')->http_code(418);
 
 
 // Errors

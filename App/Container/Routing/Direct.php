@@ -115,6 +115,10 @@ class Direct extends Route{
         return $this;
     }
     
+    public function http_code(int $code){
+        return $this->add_filter('http_code', $code);
+    }
+    
     private function Authenticate($grade, callable $callback = null){        
         $this->add_filter('auth', true);
         $this->add_filter('grade', $grade);
