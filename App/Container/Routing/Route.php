@@ -1,10 +1,10 @@
 <?php
 namespace App\Container\Routing;
 
-use Config;
+use Config, Protocol, EventListener;
 
 class Route {
-    
+
     public static $routes = [
         GET       => [],
         POST      => [],
@@ -13,58 +13,38 @@ class Route {
         DELETE    => [],
         ERROR     => [],
     ];
-    
+
     /**
      * Store all Directs in a array
      * @param  object $route Direct
      * @return string URI
      */
     public static function getCurrentRoute($route){
-        
         Config::$route = $route;
-        
-        if(Config::$debug_mode){
+
+        if(Config::$debug_mode)
             self::checkForMissingMethods();
-        }
-        
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+        if($_SERVER['REQUEST_METHOD'] == POST){
             //CSRF token
-            if(!isset($_POST['_token'])) return self::set_error('401', ['Missing token']);
-            
-            if($_POST['_token'] != $_SESSION['_token']){
-               return self::set_error('401', ['Wrong CSRF token']);
-            } 
+            if(!isset($_POST['_token']))
+                return self::set_error('400');
 
-            switch(strtoupper($_POST['_method'])) {
-                    
-                case PUT:
-                    return self::method(PUT, $route);
-                break;
+            if($_POST['_token'] != $_SESSION['_token'])
+                return self::set_error('418');
 
-                case PATCH:
-                    return self::method(PATCH, $route);
-                break;
+            if(in_array(strtoupper($_POST['_method']), [PUT, PATCH, DELETE, POST]))
+                return self::method(strtoupper($_POST['_method']), $route);
 
-                case DELETE:
-                    return self::method(DELETE, $route);
-                break;
-              
-                case POST:
-                    return self::method(POST, $route);
-                break;
-
-                default:
-                    return self::set_error('405');
-                break;
-            }
-        } else {
-            return self::method(GET, $route);
+            return self::set_error('405');
         }
+
+        return self::method(GET, $route);
     }
-    
+
     private static function checkForMissingMethods(){
         $missing = [];
-            
+
         foreach(self::$routes as $key => $http){
             foreach($http as $class){
                 if(gettype($class['callback']) == 'string') {
@@ -76,37 +56,35 @@ class Route {
             }
         }
         if(!empty($missing)){
-            print_r($missing);
-            die("Missing controllers");
+            dd("Missing controllers", $missing);
         }
     }
-    
+
+
     public static function method($method, $route){
-        
+        //reset csrf
+        $_SESSION['_token'] = uniqid();
+        Config::$form_token = $_SESSION['_token'];
+
         if(array_key_exists($route, self::$routes[$method])){
-            $key = self::$routes[$method][$route];
-            
-            if(isset($key['filter']['auth'])){
-                if(!isset($_SESSION['uuid'])){
-                    if(isset($key['filter']['callback'])){
-                        return call_user_func($key['filter']['callback']);   
-                    }
-                    return self::set_error('403', 'No entry, premission denied');   
-                }
+
+            if(EventListener::have(E_AUTH)){
+                EventListener::call(E_AUTH);
+                return self::set_error('403');
             }
+
+            EventListener::call(E_BEFORE);
+
             return self::$routes[$method][$route];
-        } else {
-            return self::set_error('404', ['error' => 'page does not exist', 'Route' => $route, 'Method' => $method, 'post' => $_POST]);
         }
+        return self::set_error('404');
     }
-    
+
     public static function set_error($error, $route = ''){
-        
-        return array_key_exists($error, self::$routes[ERROR]) ? self::$routes[ERROR][$error] : ['error' => "$error: Please set up a $error page", 'trace' => $route];
-        
+        Protocol::send($error);
+        return array_key_exists($error, self::$routes[ERROR]) ? self::$routes[ERROR][$error] : ['error' => "$error: Please set up a $error page"];
     }
-    
-    
+
     public static function lists(){
         return self::$routes;
     }

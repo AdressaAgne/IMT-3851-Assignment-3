@@ -1,24 +1,18 @@
 <?php
 namespace App\Controllers;
 
-use View, Config, Direct, Request;
+use Controller, Request, View;
 
 class MainController extends Controller {
 
     use \MigrateTrait;
-    
+
     public function index(Request $data){
 
         return View::make('index', [
             'data' => $data,
+            'title' => time(),
+            'fishes' => ['Laks', 'Tårsk', 'Rokke'],
         ]);
     }
-    
-    
-    public function route(){
-        return Direct::lists();
-    }
-    
-    
-    
 }

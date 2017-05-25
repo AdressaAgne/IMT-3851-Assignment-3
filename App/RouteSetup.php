@@ -2,11 +2,11 @@
 
 /**
 *   Direct Setup
-*   Direct::[get, post, put, patch, delete, debug](url, [controller@method, controller, callable])->[Auth(), Admin(), Mod(), Cache()]
+*   Direct::[get, post, put, patch, delete, debug](url, [controller@method, controller, callable])
 *   Example:
 *   Direct::get('/', 'MainController@index')
 *   Direct::get('/profole', 'MainController@profole')->auth()
-* 
+*
 *   url = /test/{var}/{optional?}
 *   add a ? at the end of a variable to make it optional like {var?}
 *
@@ -19,23 +19,25 @@
 *   Direct::all(url, callable);
 *   Or if you want more then one method but not all
 *   Direct::on([GET, POST, PATCH, PUT, DELETE, ERROR], url, callable);
+*
+*   Filters:
+*   ->cache(callable*) //if callable return true page will be cached or if callable = null
+*   ->auth()
+*   ->mod()
+*   ->admin()
+*   ->http_code(int) Will set the the http status code for the page
+*   ->before(callable($request))
+*   ->after(callable($request))
 */
 
 // Direct::get('/test', function(){
-//     return '<h1>This is supposed to be cached lol</h1>';
+//     return '<h1>This is supposed to be cached</h1>';
 // })->Cache();
 
 
 // Mainpage
-Direct::get("/", 'MainController@index')->http_code(418);
-
-
-// Errors
-Direct::error('404', function(Request $request){
-    return '404 page does not exist';
+Direct::get("/", 'MainController@index')->http_code(418)->render(function($route, $event, $render){
+    $render::addFunction('render event', "\/\/([^\S\n].*)", "<!--- $1 --->");
 });
 
 
-// Debug routes
-Direct::debug("/route", 'MainController');
-Direct::debug("/migrate", 'MainController');
