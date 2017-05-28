@@ -100,7 +100,7 @@ class Migrations{
 				'item_id' => 1,
 				'category_id' => 6,
 			],
-		])
+		]);
 
 	}
 }
