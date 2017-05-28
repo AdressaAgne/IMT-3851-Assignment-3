@@ -36,11 +36,11 @@ class Controller extends DB{
             self::$site_wide_vars['user'] = $this->user;
         }
 
-        $globalController = "\\".Config::$controllers."GlobalController";
-        if(function_exists($globalController)){
+        $globalController = Config::$controllers."GlobalController";
+
             $this->global = new $globalController($this);
             self::$site_wide_vars['global'] = $this->global;
-        }
+
 
     }
 

@@ -8,7 +8,7 @@ class GlobalController {
     }
 
     public function categories(){
-        return array_column('name', $this->db->all('categories'));
+        return array_column($this->db->all('categories'), 'name');
     }
 
 }
