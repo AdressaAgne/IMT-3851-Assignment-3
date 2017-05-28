@@ -70,7 +70,7 @@ class Route {
 
             if(EventListener::have(E_AUTH)){
                 EventListener::call(E_AUTH);
-                return self::set_error('403');
+                //return self::set_error('403');
             }
 
             EventListener::call(E_BEFORE);

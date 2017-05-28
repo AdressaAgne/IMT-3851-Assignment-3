@@ -8,28 +8,51 @@ class Migrations{
 
 	public static function install(){
 		//$name, $type, $default = null, $not_null = true, $auto_increment = false)
-		
-		
-		
 		$db = new DB();
-		
+
 		$db->clearOut(); // delete database
 
-		// User Account
+		// (item, item_cats, cats, users, messages)
 		$db->createTable('users', [
 			new PID(),
 			new Timestamp(),
-			new Row('cookie', 'varchar'),
-			new Row('name', 'varchar'),
-			new Row('surname', 'varchar'),
-			new Row('mail', 'varchar'),
-			new Row('password', 'varchar'),
+			new Varchar('name'),
+			new Varchar('surname'),
+			new Row('username', 'varchar', null, true, false, 'UNIQUE'),
+			new Varchar('mail'),
+			new Varchar('password'),
 		]);
 
-		 
+		$db->createTable('items', [
+			new PID(),
+			new Timestamp(),
+			new Varchar('title'),
+			new Integer('from'),
+			new Integer('to'),
+		]);
+
+		$db->createTable('item_category', [
+			new PID(),
+			new Integer('item_id'),
+			new Integer('category_id'),
+		]);
+
+		$db->createTable('categories', [
+			new PID(),
+			new Varchar('name'),
+		]);
+
+		$db->createTable('messages', [
+			new PID(),
+			new Integer('from'),
+			new Integer('to'),
+			new Row('message', 'text'),
+		]);
+
+
 		self::populate();
-		
-	
+
+
 		return [$db->tableStatus];
 	}
 
@@ -37,17 +60,6 @@ class Migrations{
 		$db = new DB();
 
 		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
-		
-		$db->updateWhere('users',[
-			'name' => 'admin',
-			'surname' => 'adminsen',
-			'approved' => '1',
-			'visible' => '0',
-			'dob' => '2017-03-16 20:16:28',
-			'mobile_phone' => '47343090',
-			'type' => '3',
-		], ['id' => $adminId]);
-		
 
 	}
 }

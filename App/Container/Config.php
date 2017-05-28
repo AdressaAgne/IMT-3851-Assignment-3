@@ -23,7 +23,7 @@ class Config {
     */
 
     public static $host     = 'localhost';
-    public static $database = 'test';
+    public static $database = 'oblig3';
     public static $username = 'root';
     public static $password = 'root';
 

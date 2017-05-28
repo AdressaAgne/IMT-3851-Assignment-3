@@ -35,9 +35,26 @@
 // })->Cache();
 
 
-// Mainpage
-Direct::get("/", 'MainController@index')->http_code(418)->render(function($route, $event, $render){
-    $render::addFunction('render event', "\/\/([^\S\n].*)", "<!--- $1 --->");
-});
+// Frontpage
+Direct::get("/", 'MainController@index');
+
+//Items
+Direct::get('/item', 'itemController@index');
+Direct::get('/item/{id?}', 'itemController@item');
+Direct::delete('/item', 'itemController@delete')->auth();
+Direct::patch('/item/edit', 'itemController@patch')->auth();
+Direct::get('/item/edit/{id}', 'itemController@edit')->auth();
+Direct::put('/item/create', 'itemController@put')->auth();
+
+// Profile
+Direct::get('/profile/{username?}', 'ProfileController@index');
+Direct::get('/profile/edit', 'ProfileController@edit');
+Direct::patch('/profile/edit', 'ProfileController@store');
+
+// admin
+Direct::get('/admin', 'AdminController@index')->auth();
+
+// Debug routes
+Direct::debug('/migrate', 'MainController');
 
 
