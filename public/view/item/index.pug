@@ -1,0 +1,15 @@
+extends ../layout/page
+
+block scripts
+	 script(src= $assets.'/js/main.js')
+
+block content
+	 
+	 p: img(src=$assets.'/img/pug.jpg', height='280')
+	 
+	 h1 I'm a Teapug
+	 
+	 each $item in $items
+		 p #{$item->title}
+			 each $cat in $item->get_categories()
+				p #{$cat}

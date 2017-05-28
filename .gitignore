@@ -1,5 +1,5 @@
 images/**
-public/assets/css
+public/assets/css/main.css
 config.codekit3
 *.css.map
 cached/**
