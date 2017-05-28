@@ -44,6 +44,7 @@ class Migrations{
 
 		$db->createTable('messages', [
 			new PID(),
+			new Timestamp(),
 			new Integer('from'),
 			new Integer('to'),
 			new Row('message', 'text'),

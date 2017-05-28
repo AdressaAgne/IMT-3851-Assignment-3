@@ -7,13 +7,15 @@ use DB, Module;
 
 class Item extends DB implements Module {
 
+    private $time;
+
     public function __construct(){
 
 
     }
 
     public function get_categories(){
-        return explode(',',$this->categories);
+        return explode(',', $this->categories);
     }
 
     public function user(){
