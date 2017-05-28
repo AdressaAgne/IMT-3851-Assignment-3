@@ -38,8 +38,8 @@ class Controller extends DB{
 
         $globalController = Config::$controllers."GlobalController";
 
-            $this->global = new $globalController($this);
-            self::$site_wide_vars['global'] = $this->global;
+        $this->global = new $globalController($this);
+        self::$site_wide_vars['global'] = $this->global;
 
 
     }

@@ -41,6 +41,19 @@ class ItemController extends Controller {
         ]);
     }
 
+    // Item Categoriy View
+    public function categories(Request $data){
+        if(!isset($data->get->cat)) return $this->index();
+        $sql = $this->sql;
+        $sql .= 'WHERE c.name = :cat';
+
+        return View::make('item.index', [
+            'items' => $this->query($sql, [
+                'cat' => $data->get->cat,
+            ])->fetch(),
+        ]);
+    }
+
     // Create a new item
     public function put(Request $data){
         return [$data];
@@ -55,6 +68,7 @@ class ItemController extends Controller {
     public function delete(Request $data){
         return [$data];
     }
+
 
     /*
     *  Functions

@@ -48,6 +48,9 @@ Direct::patch('/item/edit', 'ItemController@patch')->auth();
 Direct::get('/item/edit/{id}', 'ItemController@edit')->auth();
 Direct::put('/item/create', 'ItemController@put')->auth();
 
+// Categories
+Direct::get('/category/{cat?}', 'ItemController@categories');
+
 // Profile
 Direct::get('/profile/{username?}', 'ProfileController@index');
 Direct::get('/profile/edit', 'ProfileController@edit');
