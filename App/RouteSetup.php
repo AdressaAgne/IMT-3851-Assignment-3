@@ -37,9 +37,11 @@
 
 // Frontpage
 Direct::get("/", 'MainController@index');
+Direct::get("/login", 'MainController@login');
+Direct::get("/logout", 'MainController@logout');
 
 //Items
-Direct::get('/item', 'itemController@index');
+Direct::get('/items', 'itemController@index');
 Direct::get('/item/{id?}', 'itemController@item');
 Direct::delete('/item', 'itemController@delete')->auth();
 Direct::patch('/item/edit', 'itemController@patch')->auth();

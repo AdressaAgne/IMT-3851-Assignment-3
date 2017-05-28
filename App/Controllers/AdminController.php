@@ -5,8 +5,9 @@ use Controller, Request, View;
 
 class AdminController extends Controller {
 
+    // Admin View
     public function index(Request $data){
-        return [$data];
+        return View::make('admin.index');
     }
 
 }
