@@ -41,12 +41,12 @@ Direct::get("/login", 'MainController@login');
 Direct::get("/logout", 'MainController@logout');
 
 //Items
-Direct::get('/items', 'itemController@index');
-Direct::get('/item/{id?}', 'itemController@item');
-Direct::delete('/item', 'itemController@delete')->auth();
-Direct::patch('/item/edit', 'itemController@patch')->auth();
-Direct::get('/item/edit/{id}', 'itemController@edit')->auth();
-Direct::put('/item/create', 'itemController@put')->auth();
+Direct::get('/items', 'ItemController@index');
+Direct::get('/item/{id?}', 'ItemController@item');
+Direct::delete('/item', 'ItemController@delete')->auth();
+Direct::patch('/item/edit', 'ItemController@patch')->auth();
+Direct::get('/item/edit/{id}', 'ItemController@edit')->auth();
+Direct::put('/item/create', 'ItemController@put')->auth();
 
 // Profile
 Direct::get('/profile/{username?}', 'ProfileController@index');

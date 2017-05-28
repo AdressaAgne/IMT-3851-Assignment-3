@@ -77,6 +77,7 @@ class Route {
 
             return self::$routes[$method][$route];
         }
+
         return self::set_error('404');
     }
 

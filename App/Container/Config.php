@@ -127,6 +127,8 @@ class Config {
         '\App\Modules\User'                 => 'User',
         '\App\Modules\Category'             => 'Category',
         '\App\Modules\Image'                => 'Image',
+        '\App\Modules\Item'                 => 'Item',
+        '\App\Modules\Message'              => 'Message',
 
     ];
 

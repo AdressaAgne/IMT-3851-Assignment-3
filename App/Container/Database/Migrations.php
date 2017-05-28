@@ -27,8 +27,8 @@ class Migrations{
 			new PID(),
 			new Timestamp(),
 			new Varchar('title'),
-			new Integer('from'),
-			new Integer('to'),
+			new Integer('user_id'),
+			new Varchar('description'),
 		]);
 
 		$db->createTable('item_category', [
@@ -60,6 +60,45 @@ class Migrations{
 		$db = new DB();
 
 		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
+
+
+		$db->insert('categories', [
+			[
+				'name' => 'Sport',
+			],
+			[
+				'name' => 'Hage',
+			],
+			[
+				'name' => 'Stue',
+			],
+			[
+				'name' => 'Kjøkken',
+			],
+			[
+				'name' => 'Barn',
+			],
+			[
+				'name' => 'Natur',
+			],
+		]);
+
+		$db->createTable('item_category', [
+			new PID(),
+			new Integer('item_id'),
+			new Integer('category_id'),
+		]);
+
+		$db->insert('item_category', [
+			[
+				'item_id' => 1,
+				'category_id' => 1,
+			],
+			[
+				'item_id' => 1,
+				'category_id' => 6,
+			],
+		]);
 
 	}
 }
