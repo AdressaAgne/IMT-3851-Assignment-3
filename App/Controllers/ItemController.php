@@ -45,7 +45,7 @@ class ItemController extends Controller {
     public function categories(Request $data){
         if(!isset($data->get->cat)) return $this->index();
         $sql = $this->sql;
-        $sql .= 'WHERE c.name = :cat';
+        $sql .= ' WHERE c.name = :cat';
 
         return View::make('item.index', [
             'items' => $this->query($sql, [
@@ -77,7 +77,7 @@ class ItemController extends Controller {
     // return a single Item
     private function get_single($id){
         $sql = $this->sql;
-        $sql .= 'WHERE i.id = :id';
+        $sql .= ' WHERE i.id = :id';
 
         return $this->query($sql, [
             'id' => $id,

@@ -29,6 +29,7 @@ class Migrations{
 			new Varchar('title'),
 			new Integer('user_id'),
 			new Varchar('description'),
+			new Boolean('gone'),
 		]);
 
 		$db->createTable('item_category', [
