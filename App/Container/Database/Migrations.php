@@ -83,10 +83,12 @@ class Migrations{
 			],
 		]);
 
-		$db->createTable('item_category', [
-			new PID(),
-			new Integer('item_id'),
-			new Integer('category_id'),
+		$db->insert('items', [
+			[
+				'title' => 'Sykkel gis bort',
+				'user_id' => 1,
+				'description' => 'Jeg vil gjerne gi bort min shitty sykkel...',
+			]
 		]);
 
 		$db->insert('item_category', [
@@ -98,7 +100,7 @@ class Migrations{
 				'item_id' => 1,
 				'category_id' => 6,
 			],
-		]);
+		])
 
 	}
 }
