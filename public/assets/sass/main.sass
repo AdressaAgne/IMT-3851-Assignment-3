@@ -2,7 +2,7 @@
 @import "reset/mixins"
 @import "reset/variables"
 // Call the mixin to initiate the css reset
-+normalize
+// +normalize
 
 // Typography - based on Typey, the typography framework (https://github.com/jptaranto/typey)
 @import "typography/helpers"
@@ -34,7 +34,8 @@
 
 // Base - boilerplate-like code
 @import "base/base"
-// @import "base/typography"
+@import "base/typography_maps"
+@import "base/typography"
  
 // Components - styles for widget like modules
 @import "components/buttons"

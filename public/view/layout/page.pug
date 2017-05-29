@@ -12,9 +12,14 @@ html(lang="en")
 		link(rel="stylesheet", href=$assets.'/css/main.css')
 			
 	body
-		nav.drawer
-			ul
-				li Sup 1
+		header
+			.hamburger
+				include ../svg/hamburger
+		nav.overlay
+			.drawer: ul
+				li Categories
+					ul: each $cat in $global->categories()
+						li #{$cat}
 				li Sup 2
 				li Sup 3
 				li Sup 4
