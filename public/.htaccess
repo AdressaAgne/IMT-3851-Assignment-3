@@ -16,4 +16,3 @@ RewriteCond  %{REQUEST_FILENAME} !-d
 #RewriteRule  ^(.*)$ foldername/index.php?param=$1 [QSA,L]
 
 RewriteRule  ^(.*)$ index.php?param=$1 [QSA,L]
-RewriteRule  ^(app/.*)$ index.php?param=$1 [QSA,L]
