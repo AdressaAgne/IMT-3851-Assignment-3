@@ -15,16 +15,41 @@ html(lang="en")
 		header
 			.hamburger
 				include ../svg/hamburger
+			.logo dibs
+			.flex-right
+				
 		nav.overlay
 			.drawer: ul
-				li Categories
+				li
+					.icon: include ../svg/categories
+					| Categories
 					ul: each $cat in $global->categories()
 						li #{$cat}
-				li Sup 2
-				li Sup 3
-				li Sup 4
+				li
+					.icon: include ../svg/heart
+					| Give away
+				li
+					.icon: include ../svg/list
+					| Your items
+				hr
+				li 
+					.icon: include ../svg/user
+					| Edit profile
+				li 
+					.icon: include ../svg/logout
+					| Logout
 		
 		main
+			h1 Testing testing testing
+				br
+				| New line testing testing
+			p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			h2 Testing testing testing
+				br
+				| New line testing testing
+			h3 Testing testing testing
+				br
+				| New line testing testing
 			block content
 		footer
 			block footer

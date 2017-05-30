@@ -15,6 +15,7 @@
 	$style: false
 	$case: false
 	$letter-spacing: false
+	$variant: false
 
 	// Assign values to variables when $typestyle is a keyed map.
 	@if type-of($typestyle) == "map"
@@ -35,6 +36,9 @@
 
 		@if map-has-key($typestyle, letter-spacing)
 			$letter-spacing: map-get($typestyle, letter-spacing)
+			
+		@if map-has-key($typestyle, variant)
+			$variant: map-get($typestyle, variant)
 
 	// Assign values to variables when $typestyle is shorthand.
 	@if type-of($typestyle) == "list"
@@ -51,6 +55,8 @@
 			@else if type-of($value) == "string" and index($font-style-values, $value) != null
 				$style: $value
 			@else if type-of($value) == "number" and index($typestyle, $value) != 2 and index($typestyle, $value) != 1
+				$letter-spacing: $value
+			@else if type-of($value) == "string" and index($font-variant-values, $value) != null
 				$letter-spacing: $value
 
 	// $typestyle may also be a solitary font-size.
@@ -80,3 +86,6 @@
 
 	@if $letter-spacing
 		letter-spacing: calculate-em-px($letter-spacing, $font-size)
+		
+	@if $variant
+		font-variant: $variant

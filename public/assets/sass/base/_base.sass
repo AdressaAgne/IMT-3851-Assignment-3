@@ -1,5 +1,25 @@
 *
 	box-sizing: border-box
 
-// html
-// 	+define-type-sizing
+html
+	+define-type-sizing
+		
+body
+	color: $color-dark
+	fill: $color-dark
+		
+hr
+	background-color: $color-dark
+	height: 2px
+	border: none
+	+margin(1 0)
+		
+main
+	max-width: 1000px
+	margin: 0 auto
+	+padding(0 1)
+	width: 100vw
+	
+.logo
+	+typeface(sans-serif)
+	+typeset(logo)

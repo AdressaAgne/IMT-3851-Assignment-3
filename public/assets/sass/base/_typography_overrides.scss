@@ -1,0 +1,102 @@
+// Choose the unit typey outputs your values in. You have three choices: rem, em, or px
+$base-unit: rem;
+
+// Define our base font size and line height
+$base-font-size:    16px;
+$base-line-height:  24px;
+
+// Choose the approach that we are going to layout type with
+$line-height-method: rhythm; // or $line-height-method: ratio;
+
+// Define font sizes
+$font-size: (
+  xl:   32px,
+  l:    24px,
+  m:    16px,
+  s:    12px,
+);
+
+// define the font families you are going to use as variables
+$helvetica: 'open-sans', sans-serif;
+$garamond: Garamond, serif;
+$monaco: Monaco, monospace, monospace;
+
+// $typefaces map also uses shorthand and it does not matter what order you list properties in when using shorthand but best practice is [font-family] [letter-spacing] [weight] [case].
+$typefaces: (
+	sans-serif: (
+		font-family: $helvetica,
+		letter-spacing: -.5px,
+	),
+	serif: (
+		font-family: $garamond
+	),
+	monospace: (
+		font-family: $monaco,
+		letter-spacing: .5px,
+		weight: bold,
+		style: normal,
+		case: uppercase,
+  )
+);
+
+// Define all your font-sizes and line-heights (amongst other things) together in a lovely, easy to read (and re-call) map.
+$typestyles: (
+	heading-1: (
+		font-size: xl,
+		line-height: 2,
+		weight: bold,
+		letter-spacing: -1px  
+	),
+	heading-2: (
+		font-size: l,
+		line-height: 1.5,
+		weight: normal
+	),
+	heading-3: (
+		font-size: m,
+		line-height: 1.25,
+		weight: bold
+  ),
+  paragraph: (
+	  font-size: m,
+	  line-height: 1,
+  ),
+  logo: (
+		font-size: xl,
+		line-height: 1.25,
+		weight: bold,
+		style: italic,
+		variant: small-caps,
+		case: lowercase,
+		letter-spacing: 6px 
+	),
+	nav-item: (
+		 font-size: m,
+		 line-height: 1.35,
+		 weight: bold,
+		 variant: small-caps,
+		 case: lowercase,
+		 letter-spacing: 0px
+	 )
+);
+
+h1, h2, h3 {
+	@include typeface(sans-serif);
+}
+
+h1 {
+	@include typeset(heading-1);
+}
+
+h2 {
+	@include typeset(heading-2);
+}
+
+h3 {
+	@include typeset(heading-3);
+}
+
+p {
+	@include typeface(serif);
+	@include typeset(paragraph);
+}
