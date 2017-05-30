@@ -16,13 +16,13 @@
 * [ ]
 
 ### Audun
-* [ ] 
+* [ ]
 * [ ]
 * [ ]
 * [ ]
 
 ### Minh
-* [ ]
-* [ ]
-* [ ]
-* [ ]
+* [ ] Design
+* [ ] Login Side
+* [ ] Welcome/index page
+* [ ] Register page

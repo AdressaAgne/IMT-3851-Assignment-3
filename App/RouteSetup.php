@@ -37,9 +37,10 @@
 
 // Frontpage
 Direct::get("/", 'MainController@index');
-Direct::get("/login", 'MainController@login');
-Direct::post("/login", 'MainController@login_action');
-Direct::get("/logout", 'MainController@logout');
+Direct::get("/login", 'LoginController@login');
+
+Direct::post("/login", 'LoginController@login_action');
+Direct::get("/logout", 'LoginController@logout');
 
 //Items
 Direct::get('/items', 'ItemController@index');
