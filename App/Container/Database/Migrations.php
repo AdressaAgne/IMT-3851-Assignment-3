@@ -90,6 +90,11 @@ class Migrations{
 				'title' => 'Sykkel gis bort',
 				'user_id' => 1,
 				'description' => 'Jeg vil gjerne gi bort min shitty sykkel...',
+			],
+			[
+				'title' => 'Rotten fisk',
+				'user_id' => 1,
+				'description' => 'vil ikke ha den lenger',
 			]
 		]);
 
@@ -100,7 +105,15 @@ class Migrations{
 			],
 			[
 				'item_id' => 1,
-				'category_id' => 6,
+				'category_id' => 5,
+			],
+			[
+				'item_id' => 2,
+				'category_id' => 5,
+			],
+			[
+				'item_id' => 2,
+				'category_id' => 2,
 			],
 		]);
 

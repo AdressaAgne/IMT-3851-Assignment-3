@@ -7,25 +7,31 @@ use DB, Message;
 
 class User extends DB {
 
-    private $password;
-    private $time;
+	private $password;
+	private $time;
 
-    public function __construct($id = null){
-        if(is_null($id)) return;
+	public function __construct($id = null){
+		if(is_null($id)) return;
 
-        $user = $db->select('users', ['*'], ['id' => $id])->fetch();
-        foreach ($user as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+		$user = $this->select('users', ['*'], ['id' => $id])->fetch();
+		foreach ($user as $key => $value) {
+			$this->$key = $value;
+		}
+	}
 
-    public function created(){
-        return date('d/m/y', strtotime($this->time));
-    }
+	public function created(){
+		return date('d/m/y', strtotime($this->time));
+	}
 
-    public function sendMessage($to, $message){
-        $msg = new Message($this->id, $to, $message);
-        return $msg->save();
-    }
+	public function get_full_name(){
+		if(empty($this->name)) return 'Anonymous';
+
+		return ucwords("{$this->name} {$this->surname}");
+	}
+
+	public function sendMessage($to, $message){
+		$msg = new Message($this->id, $to, $message);
+		return $msg->save();
+	}
 
 }

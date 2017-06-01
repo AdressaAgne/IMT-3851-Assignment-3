@@ -9,10 +9,11 @@ class MainController extends Controller {
 
 	// Main index view
 	public function index(Request $data){
-		return View::make('index');
+		$itemController = new ItemController();
+		$sql = $itemController->sql;
+
+		return View::make('index', [
+			'items' => $this->query($sql.' GROUP BY i.id', 'Item')->fetchAll(),
+		]);
 	}
-
-
-
-	
 }
