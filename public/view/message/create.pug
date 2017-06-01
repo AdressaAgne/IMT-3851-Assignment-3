@@ -1,0 +1,24 @@
+extends ../layout/page
+
+block content
+	h1 Inbox
+	p: a(href="/messages") Inbox
+	
+	- Render::form('', 'PUT')
+	
+	.row
+		label To User
+			input(type="text", placeholder="username", name="to_user", list="users")
+			datalist(id="users")
+				each $u in $users
+					option(value=$u->username)
+	
+	.row
+		label
+			textarea(name="msg")
+	
+	.row
+		input(type="submit", id="send", value="Send")
+	
+	- Render::formend()
+	

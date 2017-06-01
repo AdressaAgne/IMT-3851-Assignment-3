@@ -7,34 +7,37 @@ use DB;
 class Message extends DB {
 
 	public $id;
-	public $from;
-	public $to;
+	public $from_user;
+	public $to_user;
 	public $message;
 
-	private $time;
+	public $time;
 
-	public function __construct($from, $to, $msg){
-		$this->from = $from;
-		$this->to = $to;
-		$this->message = $msg;
+	public function __construct(){
+		$this->time = $this->created();
 	}
 
 	public function from(){
-		return $this->select('users', ['*'], ['id' => $this->from], 'User')->fetch();
+		return $this->select('users', ['*'], ['id' => $this->from_user], 'User')->fetch();
 	}
 
 	public function to(){
-		return $this->select('users', ['*'], ['id' => $this->to], 'User')->fetch();
+		return $this->select('users', ['*'], ['id' => $this->to_user], 'User')->fetch();
 	}
 
-	public function save(){
-		$this->id = $this->insert('message', [
+	public function save($to, $from, $msg){
+		if(is_string($to)){
+			$to = $this->select('users', ['id'], ['username' => $to])->fetch()['id'];
+			if(is_null($to)) return false;
+		}
+		$this->id = $this->insert('messages', [
 			[
-				'from' => $this->from,
-				'to'   => $this->to,
-				'message' => $this->message,
+				'from_user' => $from,
+				'to_user'   => $to,
+				'message' => $msg,
 			],
 		]);
+
 		$this->time = time();
 		return $this;
 	}

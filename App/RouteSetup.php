@@ -59,8 +59,9 @@ Direct::get('/profile/edit', 'ProfileController@edit');
 Direct::patch('/profile/edit', 'ProfileController@store');
 
 // Messages
-Direct::get('/messages', 'MessageController@inbox');
+Direct::get('/messages', 'MessageController@index');
 Direct::get('/messages/outbox', 'MessageController@outbox');
+Direct::get('/messages/inbox', 'MessageController@inbox');
 Direct::get('/messages/new', 'MessageController@new');
 Direct::put('/messages/new', 'MessageController@store');
 
