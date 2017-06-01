@@ -30,16 +30,34 @@ class User extends DB {
 	}
 
 	public function getInbox(){
-		return $this->select('messages', ['*'], ['to_user' => $this->id], 'Message')->fetchAll();
+		$sql = 'SELECT m.message, u_from.username AS from_user, u_to.username AS to_user, m.time as time
+		FROM messages AS m
+		LEFT JOIN users AS u_from ON u_from.id = m.from_user
+		LEFT JOIN users AS u_to ON u_to.id = m.to_user
+
+		WHERE m.to_user = :id
+
+		GROUP BY m.id';
+
+		return $this->query($sql, ['id' => $this->id], 'Message')->fetchAll();
 	}
 
 	public function getOutbox(){
-		return $this->select('messages', ['*'], ['from_user' => $this->id], 'Message')->fetchAll();
+		$sql = 'SELECT m.message, u_from.username AS from_user, u_to.username AS to_user, m.time as time
+		FROM messages AS m
+		LEFT JOIN users AS u_from ON u_from.id = m.from_user
+		LEFT JOIN users AS u_to ON u_to.id = m.to_user
+
+		WHERE m.from_user = :id
+
+		GROUP BY m.id';
+
+		return $this->query($sql,['id' => $this->id], 'Message')->fetchAll();
 	}
 
 	public function sendMessage($to, $message){
-		$msg = new Message($this->id, $to, $message);
-		return $msg->save();
+		$msg = new Message();
+		return $msg->save($to, $this->id, $message);
 	}
 
 }

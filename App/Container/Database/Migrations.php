@@ -62,11 +62,24 @@ class Migrations{
 		$db = new DB();
 
 		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
+		$adminId = Account::register('bruker', 'bruker', 'bruker', 'bruker@bruker.bruker');
 
 
 		$db->insert('categories', [
 			[
 				'name' => 'Sport',
+			],
+			[
+				'name' => 'Hentai',
+			],
+			[
+				'name' => 'Octopuslove',
+			],
+			[
+				'name' => 'Clothing',
+			],
+			[
+				'name' => 'Minh',
 			],
 			[
 				'name' => 'Hage',
@@ -93,8 +106,18 @@ class Migrations{
 			],
 			[
 				'title' => 'Rotten fisk',
+				'user_id' => 2,
+				'description' => 'vil ikke ha den lenger, katta spiste den aldri, kanskje din katt liker den?',
+			],
+			[
+				'title' => 'Matpakke fra i fjor',
 				'user_id' => 1,
-				'description' => 'vil ikke ha den lenger',
+				'description' => 'Fant en matpakke fra i fjor under senga, hvis noen vil ha den er det helt greit. jeg trenger den ikke lenger.',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 2,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
 			]
 		]);
 
@@ -114,6 +137,22 @@ class Migrations{
 			[
 				'item_id' => 2,
 				'category_id' => 2,
+			],
+			[
+				'item_id' => 3,
+				'category_id' => 3,
+			],
+			[
+				'item_id' => 3,
+				'category_id' => 4,
+			],
+			[
+				'item_id' => 3,
+				'category_id' => 8,
+			],
+			[
+				'item_id' => 4,
+				'category_id' => 10,
 			],
 		]);
 

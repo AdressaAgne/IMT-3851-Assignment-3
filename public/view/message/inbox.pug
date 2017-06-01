@@ -1,7 +1,25 @@
 extends ../layout/page
 
+block scripts
+	script(src=$assets.'/js/inbox.js')
+
 block content
 	h1 Inbox
-	
-	each $msg in $inbox
-		p #{$msg->from}
+	p: a(href="/messages/new") Send new Message  
+	p: button.btn#outbox Outbox
+	table#messagebox
+		thead
+			tr
+				td 
+				td From
+				td To
+				td Message
+				
+		tbody
+			each $msg in $inbox
+				tr
+					td #{$msg->time}
+					td #{$msg->from_user}
+					td #{$msg->to_user}
+					td #{$msg->message}
+				
