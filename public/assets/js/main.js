@@ -7,5 +7,6 @@ $('.hamburger').on('click', function() {
 $('nav.overlay').on('click', function() {
 	$('nav.overlay').removeClass('active')
 }).children().click(function(e) {
-	return false;
-});	
+	// dette gjør så linker ikke fungerer... må finne ene annen løsning her
+	//return false;
+});
