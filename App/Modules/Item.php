@@ -10,8 +10,7 @@ class Item extends DB implements Module {
 	private $time;
 
 	public function __construct(){
-
-
+		
 	}
 
 	public function get_categories(){

@@ -19,6 +19,14 @@ class Message extends DB {
 		$this->message = $msg;
 	}
 
+	public function from(){
+		return $this->select('users', ['*'], ['id' => $this->from], 'User')->fetch();
+	}
+
+	public function to(){
+		return $this->select('users', ['*'], ['id' => $this->to], 'User')->fetch();
+	}
+
 	public function save(){
 		$this->id = $this->insert('message', [
 			[

@@ -58,6 +58,12 @@ Direct::get('/profile/{username?}', 'ProfileController@index');
 Direct::get('/profile/edit', 'ProfileController@edit');
 Direct::patch('/profile/edit', 'ProfileController@store');
 
+// Messages
+Direct::get('/messages', 'MessageController@inbox')->auth();
+Direct::get('/messages/outbox', 'MessageController@outbox')->auth();
+Direct::get('/messages/new', 'MessageController@new')->auth();
+Direct::put('/messages/new', 'MessageController@store')->auth();
+
 // admin
 Direct::get('/admin', 'AdminController@index')->auth();
 

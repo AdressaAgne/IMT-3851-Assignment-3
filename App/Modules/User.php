@@ -29,6 +29,14 @@ class User extends DB {
 		return ucwords("{$this->name} {$this->surname}");
 	}
 
+	public function getInbox(){
+		return $this->select('messages', ['*'], ['to' => $this->id], 'Message')->fetchAll();
+	}
+
+	public function getOutbox(){
+		return $this->select('messages', ['*'], ['from' => $this->id], 'Message')->fetchAll();
+	}
+
 	public function sendMessage($to, $message){
 		$msg = new Message($this->id, $to, $message);
 		return $msg->save();
