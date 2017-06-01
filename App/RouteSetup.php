@@ -46,9 +46,12 @@ Direct::get("/logout", 'LoginController@logout');
 Direct::get('/items', 'ItemController@index');
 Direct::get('/item/{id?}', 'ItemController@item');
 Direct::delete('/item', 'ItemController@delete');
-Direct::patch('/item/edit', 'ItemController@patch');
 Direct::get('/item/edit/{id}', 'ItemController@edit');
 Direct::put('/item/create', 'ItemController@put');
+Direct::get('/item/create', 'ItemController@create');
+Direct::patch('/item/edit', 'ItemController@patch');
+Direct::get('/register', 'ItemController@register');
+Direct::patch('/register', 'ItemController@save');
 
 // Categories
 Direct::get('/category/{cat?}', 'ItemController@categories');

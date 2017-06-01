@@ -1,8 +1,12 @@
 .col-12
 	h1: a(href='/item/'.$item->id) #{$item->title}
-	small Published on #{$item->created()} by #{$item->author()->get_full_name()}
+	if (Account::get_id() == $item->user_id)
+		small: a(href="/item/edit/".$item->id) edit
+	small  Published on #{$item->created()} by #{$item->author()->get_full_name()}
 	p #{$item->description}
 
 	ul
 		each $category in $item->get_categories()
 			li #{$category}
+	if ($item->gone)
+		p: strong This item is taken

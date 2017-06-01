@@ -60,10 +60,28 @@ class Migrations{
 
 	public static function populate(){
 		$db = new DB();
+		$pw = bcrypt('123');
 
-		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
-		$adminId = Account::register('bruker', 'bruker', 'bruker', 'bruker@bruker.bruker');
-
+		$db->insert('users', [
+			[
+				'name' => 'Agne',
+				'surname' => 'Ødegaard',
+				'username' => 'agneo',
+				'password' => $pw,
+			],
+			[
+				'name' => 'Audun',
+				'surname' => 'Meek Olsen',
+				'username' => 'amo',
+				'password' => $pw,
+			],
+			[
+				'name' => 'Minh',
+				'surname' => 'n',
+				'username' => 'minh',
+				'password' => $pw,
+			],
+		]);
 
 		$db->insert('categories', [
 			[
@@ -116,7 +134,7 @@ class Migrations{
 			],
 			[
 				'title' => 'Hamster gis bort',
-				'user_id' => 2,
+				'user_id' => 3,
 				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
 			]
 		]);

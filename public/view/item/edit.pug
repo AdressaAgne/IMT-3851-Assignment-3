@@ -1,0 +1,31 @@
+extends ../layout/page
+
+block content
+
+	- Render::form('/item/edit', 'PATCH', ['class' => 'row'])
+		.col-2-of-2
+			label title
+		
+		.col-2-of-2
+			input(name="title", value=$item->title)
+		
+		.col-2-of-2
+			label description
+		.col-2-of-2
+			textarea(name="description") #{$item->description}
+				
+		.col-2-of-2
+			label categories
+		.col-2-of-2
+			select(multiple, name="cats[]"): each $cat in $global->cats_with_ids()
+				
+				if (in_array($cat['name'], $item->get_categories()))
+					option(value=$cat['id'], selected) #{$cat['name']}
+				else
+					option(value=$cat['id']) #{$cat['name']}
+				
+				
+		.col-2-of-2
+			input(type="hidden",name="id", value=$item->id)
+			input(type="submit", value="Edit post")
+	- Render::formend()
