@@ -45,10 +45,10 @@ Direct::get("/logout", 'LoginController@logout');
 //Items
 Direct::get('/items', 'ItemController@index');
 Direct::get('/item/{id?}', 'ItemController@item');
-Direct::delete('/item', 'ItemController@delete')->auth();
-Direct::patch('/item/edit', 'ItemController@patch')->auth();
-Direct::get('/item/edit/{id}', 'ItemController@edit')->auth();
-Direct::put('/item/create', 'ItemController@put')->auth();
+Direct::delete('/item', 'ItemController@delete');
+Direct::patch('/item/edit', 'ItemController@patch');
+Direct::get('/item/edit/{id}', 'ItemController@edit');
+Direct::put('/item/create', 'ItemController@put');
 
 // Categories
 Direct::get('/category/{cat?}', 'ItemController@categories');
@@ -59,10 +59,10 @@ Direct::get('/profile/edit', 'ProfileController@edit');
 Direct::patch('/profile/edit', 'ProfileController@store');
 
 // Messages
-Direct::get('/messages', 'MessageController@inbox')->auth();
-Direct::get('/messages/outbox', 'MessageController@outbox')->auth();
-Direct::get('/messages/new', 'MessageController@new')->auth();
-Direct::put('/messages/new', 'MessageController@store')->auth();
+Direct::get('/messages', 'MessageController@inbox');
+Direct::get('/messages/outbox', 'MessageController@outbox');
+Direct::get('/messages/new', 'MessageController@new');
+Direct::put('/messages/new', 'MessageController@store');
 
 // admin
 Direct::get('/admin', 'AdminController@index')->auth();

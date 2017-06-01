@@ -8,7 +8,7 @@ class MessageController extends Controller {
 	// index / recived messages
 	public function inbox(Request $data){
 		return View::make('message.inbox', [
-			'messages' => $this->user->getInbox(),
+			'inbox' => $this->user->getInbox(),
 		]);
 	}
 

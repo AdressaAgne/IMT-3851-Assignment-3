@@ -30,11 +30,11 @@ class User extends DB {
 	}
 
 	public function getInbox(){
-		return $this->select('messages', ['*'], ['to' => $this->id], 'Message')->fetchAll();
+		return $this->select('messages', ['*'], ['to_user' => $this->id], 'Message')->fetchAll();
 	}
 
 	public function getOutbox(){
-		return $this->select('messages', ['*'], ['from' => $this->id], 'Message')->fetchAll();
+		return $this->select('messages', ['*'], ['from_user' => $this->id], 'Message')->fetchAll();
 	}
 
 	public function sendMessage($to, $message){

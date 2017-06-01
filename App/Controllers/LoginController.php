@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use Controller, Request, View;
+use Controller, Request, View, Account;
 
 class LoginController extends Controller {
 
@@ -14,9 +14,7 @@ class LoginController extends Controller {
 
 		$msg = Account::login($data->post->username, $data->post->password);
 
-		return View::make('login', [
-			'msg' => $msg
-		]);
+		return ['status' => $msg];
 	}
 
 	public function register(){

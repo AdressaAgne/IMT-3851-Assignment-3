@@ -1,0 +1,7 @@
+extends ../layout/page
+
+block content
+	h1 Inbox
+	
+	each $msg in $inbox
+		p #{$msg->from}
