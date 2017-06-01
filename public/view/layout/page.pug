@@ -24,7 +24,7 @@ html(lang="en")
 					.icon: include ../svg/categories
 					| Categories
 					ul: each $cat in $global->categories()
-						li #{$cat}
+						li: a(href=$source.'./category/'.$cat) #{$cat}
 				li
 					.icon: include ../svg/heart
 					| Give away
@@ -44,8 +44,8 @@ html(lang="en")
 		footer
 			block footer
 		
-		script(src= $assets.'/js/jquery.js')
-		script(src= $assets.'/js/main.js')
+		script(src=$assets.'/js/jquery.js')
+		script(src=$assets.'/js/main.js')
 		block scripts
 			
 			

@@ -34,22 +34,24 @@ class ItemController extends Controller {
 
 	// Edit item view
 	public function edit(Request $data){
-		return View::make('item.edit', [
-			'item' => $this->get_single($data->get->id),
-		]);
+		if(!isset($data->get->id)) return $this->index();
+
+		$item = $this->get_single($data->get->id);
+		if(Account::get_id() != $item->user_id) return $this->index();
+
+		return View::make('item.edit', ['item' => $item]);
 	}
 
 	// Item Categoriy View
 	public function categories(Request $data){
 		if(!isset($data->get->cat)) return $this->index();
 		$sql = $this->sql;
-		$sql .= ' WHERE c.name = :cat';
+		$sql .= ' WHERE c.name = :cat GROUP BY i.id';
+		$items = $this->query($sql, [
+			'cat' => $data->get->cat,
+		], 'Item')->fetchAll();
 
-		return View::make('item.index', [
-			'items' => $this->query($sql, [
-				'cat' => $data->get->cat,
-			])->fetch(),
-		]);
+		return View::make('item.index', ['items' => $items]);
 	}
 
 	// Create a new item
