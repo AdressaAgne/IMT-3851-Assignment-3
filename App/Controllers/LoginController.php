@@ -27,5 +27,8 @@ class LoginController extends Controller {
 		Account::logout();
 		return View::make('index');
 	}
-
+    //Register function 
+    public function save(Request $data ){
+        return Account::register();
+    }
 }
