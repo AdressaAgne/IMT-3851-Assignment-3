@@ -50,8 +50,8 @@ Direct::get('/item/edit/{id}', 'ItemController@edit');
 Direct::put('/item/create', 'ItemController@put');
 Direct::get('/item/create', 'ItemController@create');
 Direct::patch('/item/edit', 'ItemController@patch');
-Direct::get('/register', 'ItemController@register');
-Direct::patch('/register', 'ItemController@save');
+Direct::get('/register', 'LoginController@register');
+Direct::patch('/register', 'LoginController@save');
 
 // Categories
 Direct::get('/category/{cat?}', 'ItemController@categories');
