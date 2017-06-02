@@ -2,7 +2,16 @@ extends ../layout/page
 
 block content
 
-	 
-	each $item in $items
-		.col-4
-			include ../layout/item
+	.row
+		.col.col--4-of-12
+			each $item, $key in $items
+				if ($key % 3 == 0)
+					include ../layout/item
+		.col.col--4-of-12
+			each $item, $key in $items
+				if ($key % 3 == 1)
+					include ../layout/item
+		.col.col--4-of-12
+			each $item, $key in $items
+				if ($key % 3 == 2)
+					include ../layout/item

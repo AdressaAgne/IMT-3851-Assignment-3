@@ -137,7 +137,57 @@ class Migrations{
 				'title' => 'Hamster gis bort',
 				'user_id' => 3,
 				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
-			]
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
+			[
+				'title' => 'Hamster gis bort',
+				'user_id' => 3,
+				'description' => 'Vi har fått katt og da må hamstern bort. han har mistet ett øre pga katten allerede så fort dere! HENT HAN!',
+			],
 		]);
 
 		$db->insert('item_category', [

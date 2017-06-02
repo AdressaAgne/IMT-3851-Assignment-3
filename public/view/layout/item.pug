@@ -1,12 +1,17 @@
-.col-12
-	h1: a(href='/item/'.$item->id) #{$item->title}
-	if (Account::get_id() == $item->user_id)
-		small: a(href="/item/edit/".$item->id) edit
-	small  Published on #{$item->created()} by #{$item->author()->get_full_name()}
-	p #{$item->description}
+.item
+	.item-image
+		.edit: if (Account::get_id() == $item->user_id)
+			a(href="/item/edit/".$item->id): .edit-icon
+				include ../svg/edit.pug
+		h1: a(href='/item/'.$item->id) #{$item->title}
+	.item-info
+		.owner Published on #{$item->created()} by #{$item->author()->get_full_name()}
+		p #{$item->description}
 
-	ul
-		each $category in $item->get_categories()
-			li #{$category}
-	if ($item->gone)
-		p: strong This item is taken
+		ul
+			.categories-icon
+				include ../svg/categories
+			each $category in $item->get_categories()
+				li: a(href=$source.'/category/'.$category) #{$category}
+		if ($item->gone)
+			p: strong This item is taken
