@@ -77,7 +77,18 @@ $typestyles: (
 		 variant: small-caps,
 		 case: lowercase,
 		 letter-spacing: 0px
-	 )
+	 ),
+	 tag: (
+		  font-size: m,
+		  weight: bold,
+		  variant: small-caps,
+		  case: lowercase,
+		  letter-spacing: 0px
+	  ),
+	  small: (
+		   font-size: s,
+		   weight: bold,
+	   )
 );
 
 h1, h2, h3 {
