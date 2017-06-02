@@ -7,6 +7,8 @@ nav.overlay
 	position: fixed
 	top: 0
 	left: 0
+	display: flex
+	flex-flow: row
 		
 	&.active
 		transition: height 0s, background-color .3s ease
@@ -15,6 +17,11 @@ nav.overlay
 		
 		.drawer
 			margin-left: 0
+			
+	.exit-click
+		width: 100vw
+		height: 100vh
+		
 	
 .drawer
 	transition: margin-left .3s ease
@@ -36,7 +43,84 @@ nav.overlay
 			top: 8px
 			svg
 				transform: scale(.8)
+		
+		li span.arrow
+			+margin-left(.5)
+			font-size: 20px
+			display: inline-block
+			position: relative
+			transition: transform .3s ease
+			
+			&.hide
+				transform: rotate(0deg)
+			&.show
+				top: 3px
+				transform: rotate(180deg)
+	
+		&.hide
+			transition: max-height .3s ease-out
+			max-height: 0
+			overflow: hidden
+			
+		&.show
+			transition: max-height .3s ease-in
+			max-height: 1000px
 	
 	& > ul
 		list-style: none
 		-webkit-padding-start: 0px
+		
+	.login-form.hide
+		visibility: hidden
+		background-color: rgba(88, 88, 88, 0.0)
+		transition: background-color .3s ease, visibility 0s ease .3s
+		form
+			opacity: 0
+			transform: translateY(-10px)
+	.login-form.show
+		display: flex
+		background-color: rgba(88, 88, 88, 0.5)
+		form
+			opacity: 1
+			transform: translateY(0px)
+		
+	.login-form
+		transition: background-color .3s ease
+		position: fixed
+		top: 0px
+		left: 0px
+		width: 100vw
+		height: 100vh
+		display: flex
+		align-items: center
+		+padding(0 1)
+		color: white
+		
+		form
+			transition: transform .3s ease, opacity .3s ease
+			background-color: $color-dark
+			+padding(0 1)
+			
+			hr
+				margin: 0
+				+margin-bottom(.5)
+			.form-header
+				display: flex
+				justify-content: space-between
+				align-items: center
+				h1
+					display: inline
+				h3.close
+					text-align: center
+					background-color: lighten($color-dark, 10%)
+					height: 30px
+					width: 30px
+					border-radius: 50%
+			
+			button
+				+margin-bottom(1)
+	
+	li.categories ul li:hover
+		list-style-type: square !important
+		a
+			border-bottom: 2px solid $color-dark

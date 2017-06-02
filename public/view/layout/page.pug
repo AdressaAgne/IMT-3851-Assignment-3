@@ -17,13 +17,13 @@ html(lang="en")
 				include ../svg/hamburger
 			.logo dibs
 			.flex-right
-				
 		nav.overlay
 			.drawer: ul
-				li
+				li.categories#categories
 					.icon: include ../svg/categories
 					| Categories
-					ul: each $cat in $global->categories()
+					span.arrow.hide ⌄
+					ul#categories-list.hide: each $cat in $global->categories()
 						li: a(href=$source.'/category/'.$cat) #{$cat}
 				li
 					.icon: include ../svg/heart
@@ -38,6 +38,25 @@ html(lang="en")
 				li 
 					.icon: include ../svg/logout
 					| Logout
+				li.login#login
+					.icon: include ../svg/user
+					| Login
+					#login-form.login-form.hide
+						- Render::form('', 'POST')
+							.form-header
+								h1 Sign in
+								h3.close#close ✕
+							hr.light
+							input(placeholder='username')
+							input(placeholder='password')
+							button Sign in
+						- Render::formend()
+				li
+					.icon: include ../svg/wrench
+					| Manage site
+						
+			.exit-click
+				
 		main
 			block content
 			

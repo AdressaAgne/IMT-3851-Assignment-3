@@ -1,0 +1,174 @@
+@media (min-width: $toast-breakpoint-medium)
+	
+	.logo
+		color: white
+	
+	.hamburger
+		width: 0
+		overflow: hidden
+	
+	nav.overlay
+		height: auto
+		background-color: darken($color-primary, 10%)
+		color: white
+		fill: white
+		width: 100vw
+		position: fixed
+		position: static
+		top: 0
+		left: 0
+		display: flex
+		flex-flow: row
+		
+		.drawer
+			margin-left: 0
+			width: 100vw
+			height: 100%
+			background-color: transparent
+			+padding(.5)
+			ul
+				display: flex
+				justify-content: center
+				
+				.icon
+					+padding-right(.25)
+				
+				& > li
+					display: inline
+					+margin-left(1)
+				li span.arrow
+					display: none
+					
+			hr
+				display: none
+				
+			li.categories
+				
+				ul
+					transition: transform .3s ease, opacity .3s ease
+					display: block
+					position: absolute
+					background-color: $color-dark
+					color: white
+					+padding(.5 0)
+					max-height: none
+					-webkit-padding-start: 0px
+					list-style-type: disc
+					border: 2px solid lighten($color-dark, 30%)
+					+border-radius
+						
+					&:after, &:before
+						bottom: 100%
+						left: 50px
+						border: solid transparent
+						content: " "
+						height: 0
+						width: 0
+						position: absolute
+						pointer-events: none
+					&:after
+						border-color: rgba(136, 183, 213, 0)
+						border-bottom-color: $color-dark
+						border-width: 10px
+						margin-left: -10px
+					&:before
+						border-color: rgba(194, 225, 245, 0)
+						border-bottom-color: lighten($color-dark, 30%)
+						border-width: 13px
+						margin-left: -13px
+						
+					li
+						margin: 0
+						list-style-type: disc
+						display: list-item
+						+margin(0 1.5)
+						line-height: 1.5
+			
+				ul.hide
+					transition: transform .3s ease, opacity .3s ease, visibility 0s ease .3s
+					visibility: hidden
+					opacity: 0
+					transform: translateY(15px)
+					
+				ul.show
+					visibility: visible
+					opacity: 1
+					transform: translateY(10px)
+				
+		.login-form.hide
+			transition: transform .3s ease, opacity .3s ease, visibility 0s ease .3s
+			visibility: hidden
+			opacity: 0
+			transform: translateY(15px)
+			form
+				transition: none
+				background-color: none
+				opacity: 1
+				transform: none
+		
+		.login-form.show
+			visibility: visible
+			opacity: 1
+			transform: translateY(10px)
+			form
+				transition: none
+				background-color: none
+				opacity: 1
+				transform: none
+			
+		.login-form
+			transition: transform .3s ease, opacity .3s ease
+			position: absolute
+			width: 300px
+			height: auto
+			left: auto
+			top: auto
+			padding: 0
+			transition: transform .3s ease, opacity .3s ease
+			background-color: $color-dark
+			border: 2px solid lighten($color-dark, 30%)
+			+border-radius
+			
+			form
+				
+				hr
+					display: block
+					margin: 0
+					+margin-bottom(.5)
+				.form-header
+					display: flex
+					justify-content: space-between
+					align-items: center
+					h1
+						display: inline
+					h3.close
+						display: none
+				
+				button
+					+margin-bottom(1)
+				
+			&:after, &:before
+				bottom: 100%
+				left: 50px
+				border: solid transparent
+				content: " "
+				height: 0
+				width: 0
+				position: absolute
+				pointer-events: none
+			&:after
+				border-color: rgba(136, 183, 213, 0)
+				border-bottom-color: $color-dark
+				border-width: 10px
+				margin-left: -10px
+			&:before
+				border-color: rgba(194, 225, 245, 0)
+				border-bottom-color: lighten($color-dark, 30%)
+				border-width: 13px
+				margin-left: -13px
+		
+		.exit-click
+			display: none
+			
+	li.categories ul li:hover a
+		border-bottom: 2px solid white !important

@@ -13,6 +13,9 @@ hr
 	height: 2px
 	border: none
 	+margin(1 0)
+	
+	&.light
+		background-color: white !important
 		
 main
 	max-width: 1000px
@@ -23,3 +26,7 @@ main
 .logo
 	+typeface(sans-serif)
 	+typeset(logo)
+		
+a, a:visited, a:hover, a:active
+	color: inherit
+	text-decoration: none
