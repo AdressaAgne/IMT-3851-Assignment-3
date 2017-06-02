@@ -18,10 +18,11 @@ class Migrations{
 			new Timestamp(),
 			new Varchar('name'),
 			new Varchar('surname'),
-			new Row('username', 'varchar', null, true, false, 'UNIQUE'),
+			new Varchar('username'),
 			new Varchar('mail'),
 			new Varchar('password'),
-		]);
+			new Boolean('admin', 0),
+		])->unique('username', 'mail');
 
 		$db->createTable('items', [
 			new PID(),
@@ -36,12 +37,12 @@ class Migrations{
 			new PID(),
 			new Integer('item_id'),
 			new Integer('category_id'),
-		]);
+		])->unique('item_id', 'category_id');
 
 		$db->createTable('categories', [
 			new PID(),
 			new Varchar('name'),
-		]);
+		])->unique('name');
 
 		$db->createTable('messages', [
 			new PID(),
@@ -55,7 +56,7 @@ class Migrations{
 		self::populate();
 
 
-		return [$db->tableStatus];
+		return [$db::$tableStatus];
 	}
 
 	public static function populate(){

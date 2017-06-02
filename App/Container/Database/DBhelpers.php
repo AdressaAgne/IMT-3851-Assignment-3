@@ -7,20 +7,23 @@ use PDO;
 
 class DBhelpers{
 	public static $db;
-	public static $table;
+	//table...
+	private $t;
 
 	/**
 	 * Init Database connection
 	 * @public
 	 */
-	public function __construct(){
+	public function __construct($table = null){
 		try {
 			$dns = 'mysql:host='.Config::$host.';dbname='.Config::$database;
 			self::$db = new PDO($dns, Config::$username, Config::$password);
-			
+
 			self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 			self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 			self::$db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+
+			if(!is_null($table)) $this->t = $table;
 
 		} catch (PDOException $e) {
 			 die('Could not connect to Database'. $e);
@@ -84,7 +87,7 @@ class DBhelpers{
 	 * @param  array   $rows arrow of Row objects
 	 * @return boolean
 	 */
-	public $tableStatus = [];
+	public static $tableStatus = [];
 	public function createTable($table, array $rows, $drop = true){
 		$query = "";
 		if($drop) {
@@ -101,9 +104,21 @@ class DBhelpers{
 
 		$query .= implode(", ", $row_arr);
 		$query .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-		$return = $this->query($query);
-		$this->tableStatus[] = $return;
-		return $return;
+		self::$tableStatus[$table]['sql'] = $this->query($query)->queryString;
+		return new self($table);
+	}
+
+	/**
+	 * Add a uniqe Constraint
+	 * @method addConstraint
+	 * @author [Agne Ødegaard]
+	 * @param  [type]        $table [description]
+	 * @param  [type]        $rows  [description]
+	 */
+	public function unique(...$rows){
+		$sql = "ALTER TABLE {$this->t} ADD CONSTRAINT {$this->t}_".implode('_',$rows)." UNIQUE (".implode(', ', $rows).");";
+		self::$tableStatus[$this->t]['unique'] = $this->query($sql)->queryString;
+		return $this;
 	}
 
 	/**
