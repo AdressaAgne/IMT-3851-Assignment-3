@@ -1,3 +1,24 @@
+function ajax(url, method, data, successCallback, fail){
+	data._method = method,
+	data._token = $('input[name=_token]').val();
+	$.post({
+		url : url,
+		data : data,
+		dataType : 'JSON',
+		success : function(e){
+			if(typeof successCallback == 'function') successCallback(e);
+		},
+		error : function(e, str){
+			if(typeof fail == 'function') {
+				fail(e);
+			} else {
+				console.log(str);
+				console.log(url, data, e);
+			}
+		}
+	});
+}
+
 // Activate navigation drawer when hamburger is clicked
 $('.hamburger').on('click', function() {
 	$('nav.overlay').addClass('active');
@@ -10,7 +31,7 @@ $('.exit-click').on('click', function() {
 
 // Toggle login form in navigation
 $('body').click(function(e){
-	
+
 	// If login is clicked
 	if(e.target.id == 'login')
 		// Toggle show hide classes
@@ -26,7 +47,7 @@ $('body').click(function(e){
 		// Toggle show class if anywhere on body except the login-form is clicked
 		$('.login-form').toggleClass('show hide');
 	};
-	
+
 	// If categories is clicked
 	if(e.target.id == 'categories')
 		// Toggle show hide classes
@@ -42,5 +63,5 @@ $('body').click(function(e){
 		// Toggle show class if anywhere on body except the categories-list is clicked
 		$('#categories-list').toggleClass('show hide');
 	};
-	
+
 });

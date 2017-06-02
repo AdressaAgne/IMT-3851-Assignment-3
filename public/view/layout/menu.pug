@@ -1,0 +1,41 @@
+li.categories#categories
+	.icon: include ../svg/categories
+	| Categories
+	span.arrow.hide ⌄
+	ul#categories-list.hide: each $cat in $global->categories()
+		li: a(href=$source.'/category/'.$cat) #{$cat}
+if (Account::isLoggedIn())
+	li
+		.icon: include ../svg/heart
+		a(href=$source.'/items') Give away
+	li
+		.icon: include ../svg/list
+		a(href=$source.'/profile/items') Your items
+	li
+		.icon: include ../svg/user
+		a(href=$source.'/profile')  Edit profile
+	li
+		.icon: include ../svg/logout
+		a(href=$source.'/logout') Logout
+if (!Account::isLoggedIn())
+	li.login#login
+		.icon: include ../svg/user
+		| Login
+		#login-form.login-form.hide
+			- Render::form('/login', 'POST')
+				.form-header
+					h1 Sign in
+					h3.close#close ✕ 
+					//- &times; er d samme som ✕
+				hr.light
+				input(placeholder='Username',name='username')
+				input(placeholder='Password',name='password')
+				button Sign in
+			- Render::formend()
+	li
+		.icon: include ../svg/user
+		a(href='/register') Register
+if (Account::isLoggedIn() && $user->isAdmin())
+	li
+		.icon: include ../svg/wrench
+		a(href=$source.'/admin')  Manage site
