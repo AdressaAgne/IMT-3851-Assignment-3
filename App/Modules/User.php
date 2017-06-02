@@ -55,6 +55,12 @@ class User extends DB {
 		return $this->query($sql,['id' => $this->id], 'Message')->fetchAll();
 	}
 
+	public function getItems(){
+		$itemController = new App\Controllers\ItemController();
+		$sql = $itemController->sql;
+		return $this->query($sql.' WHERE i.user_id = :id', ['id' => $this->id])->fetchAll();
+	}
+
 	public function isAdmin(){
 		return $this->admin == 1;
 	}

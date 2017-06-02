@@ -5,7 +5,8 @@
 				include ../svg/edit.pug
 		h1: a(href='/item/'.$item->id) #{$item->title}
 	.item-info
-		.owner Published on #{$item->created()} by #{$item->author()->get_full_name()}
+		.owner Published on #{$item->created()} by 
+			a(href='/profile/'.$item->author()->username) #{$item->author()->get_full_name()}
 		p #{$item->description}
 
 		ul
