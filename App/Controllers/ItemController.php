@@ -55,9 +55,13 @@ class ItemController extends Controller {
 		if(!isset($data->get->cat)) return ['error' => 'no category_id'];
 		$sql = $this->sql;
 		$sql .= ' WHERE c.name = :cat GROUP BY i.id';
-		return $this->query($sql, [
+		$items = $this->query($sql, [
 			'cat' => $data->get->cat,
 		], 'Item')->fetchAll();
+
+		return View::make('item.index', [
+			'items' => $items,
+		]);
 	}
 
 	// Create a new item

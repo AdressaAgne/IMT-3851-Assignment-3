@@ -14,7 +14,7 @@ class LoginController extends Controller {
 
 		$msg = Account::login($data->post->username, $data->post->password);
 
-		return ['status' => $msg];
+		return ['status' => $msg, 'toast' => 'Welcome ' . $data->post->username];
 	}
 
 	public function register(){
@@ -25,19 +25,27 @@ class LoginController extends Controller {
 	// Logout function
 	public function logout(Request $data){
 		Account::logout();
-		return View::make('index');
+		return ['toast' => 'You have logged out'];
 	}
 	//Register function
 	public function save(Request $data){
-		if(!isset($data->post->username)) return ['status' => 'Username missing'];
-		if(!isset($data->post->password)) return ['status' => 'Password missing'];
-		if(!isset($data->post->password_again)) return ['status' => 'Confirm Password missing'];
-		if(!isset($data->post->mail)) return ['status' => 'Mail missing'];
+		if(empty($data->post->username))
+			return ['invalid' => 'username'];
+		if(empty($data->post->password))
+			return ['invalid' => 'password'];
+		if(empty($data->post->password_again))
+			return ['invalid' => 'password_again'];
+		if(empty($data->post->mail))
+			return ['invalid' => 'mail'];
 
 
 		$user = Account::register($data->post->username, $data->post->password, $data->post->password_again, $data->post->mail);
 		if(is_numeric($user) && $user > 0)
 			return ['status' => 'ok'];
 		return ['status' => $user];
+	}
+
+	public function menu(){
+		return View::make('layout.menu');
 	}
 }

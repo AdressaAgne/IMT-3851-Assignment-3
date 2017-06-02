@@ -42,6 +42,8 @@ Direct::get("/login", 'LoginController@login');
 Direct::post("/login", 'LoginController@login_action');
 Direct::get("/logout", 'LoginController@logout');
 
+Direct::get('/menu', 'LoginController');
+
 //Items
 Direct::get('/items', 'ItemController@index');
 Direct::get('/item/{id?}', 'ItemController@item');

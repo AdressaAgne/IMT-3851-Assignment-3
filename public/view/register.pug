@@ -1,29 +1,23 @@
-extends layout/page
 
-block scripts
-	script(src=$assets.'/js/register.js')
+- Render::form('/register', 'PUT')
 
-block content
+	.login-container
+		table
+			h1 Sign Up
+			
+			tr: td
+				label: b Username:
+				input(type="text", placeholder="Username", name="username")
+			tr: td
+				label: b Email:
+				input(type="text", placeholder="name@email.com", name="mail")
+			tr: td
+				label: b Password:
+				input(type="password", placeholder="Enter Password", name="password")
+			tr: td
+				label: b Confirm Password:
+				input(type="password", placeholder="Confirm Password", name="password_again")
+			tr: td
+				button(type="submit", name="register_submit" class="signupbtn") Sign Up
 
-	- Render::form('', 'PUT')
-
-		.login-container
-			table
-				h1 Sign Up
-				
-				tr: td
-					label: b Username:
-					input(type="text", placeholder="Username", name="username", required)
-				tr: td
-					label: b Email:
-					input(type="text", placeholder="name@email.com", name="email", required)
-				tr: td
-					label: b Password:
-					input(type="password", placeholder="Enter Password", name="psw", required)
-				tr: td
-					label: b Confirm Password:
-					input(type="password", placeholder="Confirm Password", name="pswrepeat", required)
-				tr: td
-					button(type="submit", class="signupbtn") Sign Up
-
-	- Render::formend()
+- Render::formend()

@@ -7,7 +7,7 @@ li.categories#categories
 if (Account::isLoggedIn())
 	li
 		.icon: include ../svg/heart
-		a(href=$source.'/items') Give away
+		a(href=$source.'/item/create') Give away
 	li
 		.icon: include ../svg/list
 		a(href=$source.'/profile/items') Your items
@@ -16,7 +16,7 @@ if (Account::isLoggedIn())
 		a(href=$source.'/profile')  Edit profile
 	li
 		.icon: include ../svg/logout
-		a(href=$source.'/logout') Logout
+		a(href='#')#logout Logout
 if (!Account::isLoggedIn())
 	li.login#login
 		.icon: include ../svg/user
@@ -28,13 +28,14 @@ if (!Account::isLoggedIn())
 					h3.close#close ✕ 
 					//- &times; er d samme som ✕
 				hr.light
-				input(placeholder='Username',name='username')
-				input(placeholder='Password',name='password')
-				button Sign in
+				span#login-error 
+				input(type='text',placeholder='Username', name='username')
+				input(type='password', placeholder='Password', name='password')
+				button(type='submit', name='login_submit') Sign in
 			- Render::formend()
 	li
 		.icon: include ../svg/user
-		a(href='/register') Register
+		a(data-ajax='/register') Register
 if (Account::isLoggedIn() && $user->isAdmin())
 	li
 		.icon: include ../svg/wrench
