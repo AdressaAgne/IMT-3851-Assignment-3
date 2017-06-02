@@ -18,8 +18,8 @@ class ItemController extends Controller {
 
 	// Multiple items view
 	public function index(){
-		return View::make('item.index', [
-			'items' => $this->query($this->sql.' GROUP BY i.id', 'Item')->fetchAll(),
+		return View::make('index', [
+			'items' => $this->query($this->sql.' GROUP BY i.id ORDER BY i.time DESC', 'Item')->fetchAll(),
 		]);
 	}
 
@@ -54,13 +54,14 @@ class ItemController extends Controller {
 	public function categories(Request $data){
 		if(!isset($data->get->cat)) return ['error' => 'no category_id'];
 		$sql = $this->sql;
-		$sql .= ' WHERE c.name = :cat GROUP BY i.id';
+		$sql .= ' WHERE c.name = :cat GROUP BY i.id  ORDER BY i.time DESC';
 		$items = $this->query($sql, [
 			'cat' => $data->get->cat,
 		], 'Item')->fetchAll();
 
-		return View::make('item.index', [
+		return View::make('index', [
 			'items' => $items,
+			'page' => $data->get->cat,
 		]);
 	}
 

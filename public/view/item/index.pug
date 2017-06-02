@@ -1,7 +1,9 @@
-extends ../layout/page
-
-block content
-
+if (isset($page))
+	h1 Category: #{$page}
+	
+if (count($items) == 0)	
+	h1 No items	
+else 	
 	.row
 		.col.col--4-of-12
 			each $item, $key in $items
