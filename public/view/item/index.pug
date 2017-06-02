@@ -1,9 +1,13 @@
 if (isset($page))
-	h1 Category: #{$page}
+	h1.center.recent Category: #{$page}
 	
 if (count($items) == 0)	
-	h1 No items	
+	h2.center No items, 
+		a(data-back='') return to previous page.
 else 	
+	unless isset($page)
+		h1.center.recent Most recent items up for grabs
+	
 	.row
 		.col.col--4-of-12
 			each $item, $key in $items

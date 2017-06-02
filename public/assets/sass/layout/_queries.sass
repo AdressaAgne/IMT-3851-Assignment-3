@@ -1,5 +1,8 @@
 @media (min-width: $toast-breakpoint-medium)
 	
+	h1.recent
+		top: 10px
+	
 	.logo
 		color: white
 	
@@ -46,6 +49,7 @@
 				
 				ul
 					transition: transform .3s ease, opacity .3s ease
+					z-index: 2
 					display: block
 					position: absolute
 					background-color: $color-dark
@@ -117,6 +121,7 @@
 				transform: none
 			
 		.login-form
+			z-index: 2
 			transition: transform .3s ease, opacity .3s ease
 			position: absolute
 			width: 300px

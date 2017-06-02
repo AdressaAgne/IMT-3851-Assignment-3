@@ -12,8 +12,8 @@ $(function(){
 			$('header').css('margin-bottom', '0px');
 	   }
    })
-
 	$('[data-back]').click(function(){
+		console.log(this);
 		window.history.back();
 	});
 

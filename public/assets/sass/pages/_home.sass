@@ -18,24 +18,36 @@
 		h1
 			color: white
 		
-		.edit
+		.actions
 			width: 100%
 			display: flex
-			flex-flow: column
-			a
-				width: 40px
-				align-self: flex-end
-		.edit-icon
+			flex-flow: row
+			justify-content: flex-end
+		
+		.edit-icon, .delete-icon
 			+margin-top(.5)
-			background-color: $color-primary
 			height: 40px
 			width: 40px
 			border-radius: 50%
 			+box-shadow
-			display: flex
+			display: inline-flex
 			justify-content: center
 			align-items: center
 			fill: white
+			transition: transform .3s ease, background-color .3s ease
+			&:hover
+				transform: scale(1.1)
+		
+		.edit-icon
+			background-color: $color-primary
+			+margin-right(.5)
+			&:hover
+				background-color: lighten($color-primary, 10%)
+		.delete-icon
+			background-color: $color-alert
+			padding: 0
+			&:hover
+				background-color: lighten($color-alert, 10%)
 			
 	.item-info
 		+padding(0 .5)
@@ -86,6 +98,22 @@
 					position: relative
 					top: -1px
 					
+	&.gone
+		opacity: .7
+	&.gone .item-image
+		position: relative
+	&.gone .item-image:after
+		content: 'taken'
+		top: 50%
+		left: calc(50% - 20px)
+		position: absolute
+		font-variant: small-caps
+		font-weight: bold
+		transform: rotateZ(45deg) translateX(-50%) translateY(-50%) scale(3)
+		color: $color-alert
+		
+		
+					
 .toast
 	background-color: $color-dark
 	position: absolute
@@ -107,3 +135,7 @@
 	100%
 		transform: translateY(10px)
 		opacity: 0
+		
+h1.recent
+	position: relative
+	top: 0px

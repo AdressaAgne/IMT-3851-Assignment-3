@@ -1,7 +1,12 @@
 .item-image
-	.edit: if (Account::get_id() == $item->user_id)
-		a(href="/item/edit/".$item->id): .edit-icon
-			include ../svg/edit.pug
+	
+	.actions: if (Account::get_id() == $item->user_id)
+		a(href="/item/edit/".$item->id): .edit-icon: include ../svg/edit
+		- Render::form('item', 'DELETE')
+			input(type='hidden', name="id", value=$item->id)
+			button.delete-icon(type='submit', name='item_delete'): include ../svg/delete
+		- Render::formend()
+			
 	h1: a(href='/item/'.$item->id) #{$item->title}
 .item-info
 	.owner Published on #{$item->created()} by 
