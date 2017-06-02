@@ -1,0 +1,87 @@
+.item
+	width: 100%
+	+margin(1 0)
+	//+padding(.5 1)
+	+border-radius
+	+box-shadow
+		
+	.item-image
+		width: 100%
+		height: 250px
+		background: linear-gradient(rgba(0, 0, 0, 0), rgba(#000, .5)), url('http://placewars.agne.no/') no-repeat center center
+		background-size: cover
+		display: flex
+		flex-flow: column
+		justify-content: space-between
+		+padding(0 .5)
+		
+		h1
+			color: white
+		
+		.edit
+			width: 100%
+			display: flex
+			flex-flow: column
+			a
+				width: 40px
+				align-self: flex-end
+		.edit-icon
+			+margin-top(.5)
+			background-color: $color-primary
+			height: 40px
+			width: 40px
+			border-radius: 50%
+			+box-shadow
+			display: flex
+			justify-content: center
+			align-items: center
+			fill: white
+			
+	.item-info
+		+padding(0 .5)
+		
+		.owner
+			font-weight: bold
+			+margin-top(1)
+			+typeset(small)
+		
+		.categories-icon
+			background-color: $color-dark
+			height: 30px
+			+margin-right(.5)
+			width: 30px
+			border-radius: 50%
+			display: inline-flex
+			justify-content: center
+			align-items: center
+			fill: white
+			svg
+				height: 18px
+		ul 
+			+margin-top(1)
+			padding-left: 0px
+			color: white
+			
+			li
+				height: 30px
+				position: relative
+				top: -4px
+				left: 7px
+				line-height: 30px
+				+margin(0 .7 .5 0)
+				+padding(0 .5)
+				+typeset(tag)
+				display: inline-block
+				background-color: $color-dark
+				&:after
+					content: ''
+					position: absolute
+					right: 100%
+					width: 0
+					height: 0
+					border-style: solid
+					border-width: 15px 7px 15px 0
+					border-color: transparent $color-dark transparent transparent
+				a
+					position: relative
+					top: -1px
