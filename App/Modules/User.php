@@ -55,6 +55,10 @@ class User extends DB {
 		return $this->query($sql,['id' => $this->id], 'Message')->fetchAll();
 	}
 
+	public function isAdmin(){
+		return $this->admin == 1;
+	}
+
 	public function sendMessage($to, $message){
 		$msg = new Message();
 		return $msg->save($to, $this->id, $message);

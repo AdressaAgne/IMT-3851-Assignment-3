@@ -27,8 +27,17 @@ class LoginController extends Controller {
 		Account::logout();
 		return View::make('index');
 	}
-    //Register function 
-    public function save(Request $data ){
-        return Account::register();
-    }
+	//Register function
+	public function save(Request $data){
+		if(!isset($data->post->username)) return ['status' => 'Username missing'];
+		if(!isset($data->post->password)) return ['status' => 'Password missing'];
+		if(!isset($data->post->password_again)) return ['status' => 'Confirm Password missing'];
+		if(!isset($data->post->mail)) return ['status' => 'Mail missing'];
+
+
+		$user = Account::register($data->post->username, $data->post->password, $data->post->password_again, $data->post->mail);
+		if(is_numeric($user) && $user > 0)
+			return ['status' => 'ok'];
+		return ['status' => $user];
+	}
 }
