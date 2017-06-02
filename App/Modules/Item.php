@@ -10,11 +10,13 @@ class Item extends DB implements Module {
 	private $time;
 
 	public function __construct(){
-		
+
 	}
 
 	public function get_categories(){
-		return explode(',', $this->categories);
+		$cats = explode(',', $this->categories);
+		if($cats[0] == '') return ['no tags'];
+		return $cats;
 	}
 
 	public function author(){
