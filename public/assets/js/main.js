@@ -47,7 +47,7 @@ function registerFromEvents(){
 				}
 				// check if the submit button name is a function, and call it. setting the this varibale to the json data
 				if(typeof window[successFunc] == 'function') {
-					window[successFunc].call(json);
+					window[successFunc].call(json, $(this));
 				} else {
 					console.log('please add function: ' + successFunc, 'Outside of the jQuery function $(function(){})');
 				}
@@ -206,4 +206,8 @@ function login_submit(){
 
 function register_submit(){
 	console.log(this);
+}
+
+function item_delete(form){
+	$(form).parent().slideUp();
 }

@@ -116,7 +116,14 @@ class ItemController extends Controller {
 
 	// Delete an item
 	public function delete(Request $data){
-		return [$data];
+		if(!Account::isLoggedIn()) return ['status' => 'failed', 'toast' => 'You need to login'];
+
+		$item = $this->select('items', ['user_id', 'id'], ['id' => $data->post->id], 'Item')->fetch();
+		if($item->user_id !== $this->user->id) return ['status' => 'failed', 'toast' => 'You do not own this post...'];
+
+		$this->deleteWhere('items', 'id', $data->post->id);
+
+		return ['toast' => 'Item deleted'];
 	}
 
 	/*
