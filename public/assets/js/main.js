@@ -1,3 +1,24 @@
+$(function(){
+	$(window).scroll(function(){
+	   if($(this).scrollTop() > 49){
+			$('nav').css('position','fixed');
+			$('nav').css('z-index','100000');
+			$('nav').css('box-shadow','0px 0px 10px 0px rgba(0,0,0,.2)');
+			$('header').css('margin-bottom', '60px');
+	   } else {
+			$('nav').css('z-index','0');
+			$('nav').css('box-shadow','none');
+			$('nav').css('position','static');
+			$('header').css('margin-bottom', '0px');
+	   }
+   })
+
+	$('[data-back]').click(function(){
+		window.history.back();
+	});
+
+});
+
 function registerFromEvents(){
 	$(function(){
 		// remove eventListeners
