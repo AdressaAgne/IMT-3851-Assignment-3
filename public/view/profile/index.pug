@@ -1,0 +1,9 @@
+extends ../layout/page
+
+block content
+	 
+	
+
+	h1 #{ $profile->get_full_name() }
+	each $item in $profile->getItems()
+		include ../layout/item

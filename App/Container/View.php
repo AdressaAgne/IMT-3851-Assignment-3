@@ -36,6 +36,7 @@ class View {
 			} else {
 				$code = Render::code(file_get_contents($filename));
 			}
+			
 
 			ob_start();
 				if(!is_null($vars)) extract($vars);

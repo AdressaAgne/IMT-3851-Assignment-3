@@ -56,9 +56,9 @@ class User extends DB {
 	}
 
 	public function getItems(){
-		$itemController = new App\Controllers\ItemController();
+		$itemController = new \App\Controllers\ItemController();
 		$sql = $itemController->sql;
-		return $this->query($sql.' WHERE i.user_id = :id', ['id' => $this->id])->fetchAll();
+		return $this->query($sql.'  WHERE i.user_id = :id GROUP BY i.id ORDER BY i.time DESC', ['id' => $this->id], 'Item')->fetchAll();
 	}
 
 	public function isAdmin(){
