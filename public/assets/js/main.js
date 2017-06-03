@@ -209,6 +209,11 @@ refreshMenu()
 // This is run when the form sith type="submit" and name="login_submit"
 function login_submit(){
 	if(this.status === true){
+		if(window.location.href.match(/(\/register)$/m)){
+			toast('You will be redirected to home');
+			location.href = '/';
+		}
+
 		fetch('/menu', function(data){
 			$('.drawer ul').html(data);
 		});

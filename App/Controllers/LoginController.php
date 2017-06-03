@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use Controller, Request, View, Account;
+use Controller, Request, View, Account, Direct;
 
 class LoginController extends Controller {
 
@@ -13,7 +13,6 @@ class LoginController extends Controller {
 	 * @return JSON
 	 */
 	public function login_action(Request $data){
-
 		$msg = Account::login($data->post->username, $data->post->password);
 		if($msg === true) return ['toast' => 'Welcome ' . $data->post->username, 'status' => true];
 		return ['toast' => $msg,];
@@ -26,6 +25,8 @@ class LoginController extends Controller {
 	 * @return View
 	 */
 	public function register(){
+		if(Account::isLoggedIn()) return Direct::re('/');
+
 		return View::make('register');
 	}
 
@@ -38,7 +39,7 @@ class LoginController extends Controller {
 	 */
 	public function logout(Request $data){
 		Account::logout();
-		return ['toast' => 'You have logged out'];
+		return ['toast' => 'You have logged out, redirecting to Home'];
 	}
 	/**
 	 * Ajax: Register a user
