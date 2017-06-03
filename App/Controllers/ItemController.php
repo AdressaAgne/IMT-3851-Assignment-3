@@ -38,7 +38,7 @@ class ItemController extends Controller {
 
 	// create an item, view, return to index if not logged in
 	public function create(){
-		if(Account::isLoggedIn()) return $this->index();
+		if(!Account::isLoggedIn()) return $this->index();
 
 		return View::make('item.create');
 	}

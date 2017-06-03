@@ -1,4 +1,4 @@
-.item-image(style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5)), url('https://placewars.agne.no/800/400?".$item->id."') no-repeat center center")
+.item-image(style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5)), url('https://placewars.agne.no?".$item->id."') no-repeat center center")
 	.actions
 		if (Account::isLoggedIn() && (Account::get_id() == $item->user_id))
 			a(href="/item/edit/".$item->id): .edit-icon: include ../svg/edit
