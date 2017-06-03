@@ -12,15 +12,17 @@ if (Account::isLoggedIn())
 		.icon: include ../svg/list
 		a(href=$source.'/profile/items') Your items
 	li
-		.icon: include ../svg/user
-		a(href=$source.'/profile') Edit profile
-	li
 		.icon: include ../svg/inbox
 		a(href=$source.'/inbox') Inbox
+	hr
+	li
+		.icon: include ../svg/user
+		a(href=$source.'/profile') Edit profile
 	li
 		.icon: include ../svg/logout
 		a(href='#')#logout Logout
 if (!Account::isLoggedIn())
+	hr
 	li.login#login
 		.icon: include ../svg/user
 		| Login
@@ -29,15 +31,13 @@ if (!Account::isLoggedIn())
 				.form-header
 					h1 Sign in
 					h3.close#close ✕ 
-					//- &times; er d samme som ✕
-				//- hr.light
 				span#login-error 
 				input#username(type='text',placeholder='Username', name='username')
 				input#password(type='password', placeholder='Password', name='password')
 				button(type='submit', name='login_submit') Sign in
 			- Render::formend()
 	li
-		.icon: include ../svg/user
+		.icon: include ../svg/register
 		a(data-ajax='/register') Register
 if (Account::isLoggedIn() && $user->isAdmin())
 	li

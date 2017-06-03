@@ -1,16 +1,17 @@
 $(function(){
 	$(window).scroll(function(){
-	   if($(this).scrollTop() > 49){
-			$('nav').css('position','fixed');
-			$('nav').css('z-index','100000');
-			$('nav').css('box-shadow','0px 0px 10px 0px rgba(0,0,0,.2)');
-			$('header').css('margin-bottom', '60px');
-	   } else {
-			$('nav').css('z-index','0');
-			$('nav').css('box-shadow','none');
-			$('nav').css('position','static');
-			$('header').css('margin-bottom', '0px');
-	   }
+		if ($(window).width() > 700 )
+		   if($(this).scrollTop() > 49){
+				$('nav').css('position','fixed');
+				$('nav').css('z-index','100000');
+				$('nav').css('box-shadow','0px 0px 10px 0px rgba(0,0,0,.2)');
+				$('header').css('margin-bottom', '60px');
+		   } else {
+				$('nav').css('z-index','0');
+				$('nav').css('box-shadow','none');
+				$('nav').css('position','static');
+				$('header').css('margin-bottom', '0px');
+		   }
    })
 	$('[data-back]').click(function(){
 		console.log(this);
@@ -162,7 +163,10 @@ function refreshMenu(){
 				// Ignore if login-form or login is clicked
 				if(e.target.id == 'login-form' || e.target.id == 'login')
 					return;
-				// Ignore any children of login-form
+				// Toggle show class if close button is clicked
+				if(e.target.id == 'close')
+					$('.login-form').toggleClass('show hide');
+				// Ignore any children of login-form (except above close button as stated in above if)
 				if($(e.target).closest('#login-form').length)
 					return;
 				// Toggle show class if anywhere on body except the login-form is clicked

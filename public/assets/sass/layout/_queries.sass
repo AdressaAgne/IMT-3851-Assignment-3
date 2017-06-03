@@ -1,10 +1,13 @@
 @media (min-width: $toast-breakpoint-medium)
 	
+	.header-container
+		height: auto
+	
+	header
+		position: static
+	
 	h1.recent
 		top: 10px
-	
-	.logo
-		color: white
 	
 	.hamburger
 		width: 0
@@ -51,7 +54,8 @@
 					transition: transform .3s ease, opacity .3s ease
 					z-index: 2
 					display: block
-					position: absolute
+					position: fixed
+					z-index: 999 !important
 					background-color: $color-dark
 					color: white
 					+padding(.5 0)
@@ -123,7 +127,8 @@
 		.login-form
 			z-index: 2
 			transition: transform .3s ease, opacity .3s ease
-			position: absolute
+			position: fixed
+			z-index: 999 !important
 			width: 300px
 			height: auto
 			left: auto

@@ -5,6 +5,7 @@ nav.overlay
 	width: calc(100vw + 300px)
 	background-color: rgba(85, 85, 85, 0)
 	position: fixed
+	z-index: 9999999 !important
 	top: 0
 	left: 0
 	display: flex
@@ -35,6 +36,9 @@ nav.overlay
 	ul
 		margin: 0
 		list-style-type: disc
+		
+		& > li:hover
+			cursor: pointer
 		
 		.icon
 			display: inline
@@ -116,10 +120,12 @@ nav.overlay
 					height: 30px
 					width: 30px
 					border-radius: 50%
+					&:hover
+						cursor: pointer
 			
 			button
 				+margin-bottom(1)
-	
+
 	li.categories ul li:hover
 		list-style-type: square !important
 		a

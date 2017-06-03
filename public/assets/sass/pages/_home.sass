@@ -116,7 +116,7 @@
 		
 					
 .toast
-	background-color: $color-dark
+	background-color: $color-success
 	position: absolute
 	bottom: 0
 	right: 0
@@ -125,12 +125,16 @@
 	+margin(1)
 	+border-radius
 	+box-shadow
-	transform: translateY(0)
-	opacity: 1
-	animation: alert .3s ease-out 3s forwards
+	animation: alert 3s ease-out forwards
 
 @keyframes alert
 	0%
+		transform: translateY(10px)
+		opacity: 0
+	10%
+		transform: translateY(0)
+		opacity: 1
+	90%
 		transform: translateY(0)
 		opacity: 1
 	100%

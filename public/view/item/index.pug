@@ -1,4 +1,11 @@
+if (count($items) == 0 && !isset($page))
+	//- Display message if no items
+	h2.center No items currently available,
+		br
+		| come back later!
+
 if (count($items) == 0 && isset($page))	
+	//- Display message if no items in particular category
 	h2.center No items for category 
 		b #{$page},
 		br
@@ -6,11 +13,14 @@ if (count($items) == 0 && isset($page))
 
 else
 	unless isset($page)
+		//- Display defualt index message
 		h1.center.recent Most recent items up for grabs
 	if (isset($page))
+		//- Display message with particular category currently being browsed
 		h1.center.recent Category: #{$page}
-	
+	//- Display items
 	.row
+		//- Use modulo to decide which column to output item in
 		.col.col--4-of-12
 			each $item, $key in $items
 				if ($key % 3 == 0)

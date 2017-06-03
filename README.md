@@ -71,7 +71,7 @@ the reasoning behind your design, and implementation choices (database design, p
 	* Toast greets with username input from login form even when login fails.
 * [ ] 😤 **Navigation dropdown shenanigans**
 	* Login and categories dropdown menus do not cancel out each other correctly.
-* [ ] 😭 **Mobile nav drawer fixed hopping**
+* [x] 😭 **Mobile nav drawer fixed hopping**
 	* Content behind expanded mobile drawer perform large hops when scrolling.
 * [ ] 😭 **Can't cancel mobile login modal**
 	* Unable to cancel login modal on small viewport widths.
