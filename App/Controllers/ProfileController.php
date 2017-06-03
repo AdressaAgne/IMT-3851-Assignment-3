@@ -28,11 +28,21 @@ class ProfileController extends Controller {
 	// Edit profile api
 	public function store(Request $data){
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to be logged in'];
+		if(empty($data->post->name))
+			return ['toast' => 'Please enter your name'];
+		if(empty($data->post->surname))
+			return ['toast' => 'Please enter your surname'];
+		if(empty($data->post->username))
+			return ['toast' => 'Your username can not empty'];
+		if(empty($data->post->mail))
+			return ['toast' => 'Please enter your mail'];
 
 		// using @ to get false instead of error Exeption, if false username or mail already exists
 		$update = @$this->updateWhere('users', [
 			'mail'     => $data->post->mail,
 			'username' => $data->post->username,
+			'name' => $data->post->name,
+			'surname' => $data->post->surname,
 		], ['id' => Account::get_id()]);
 
 		if(!empty($data->post->password) && !empty($data->post->password_again) && !empty($data->post->password_old)){

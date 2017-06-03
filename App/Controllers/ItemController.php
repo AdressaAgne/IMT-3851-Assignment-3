@@ -97,7 +97,7 @@ class ItemController extends Controller {
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to login to post and item'];
 
 		$item = $this->select('items', ['user_id', 'id'], ['id' => $data->post->id], 'Item')->fetch();
-		if($item->user_id !== $this->user->id) return ['toast' => 'You do not own this post'];
+		if($item->user_id !== $this->user->id && !$this->user->isAdmin()) return ['toast' => 'You do not own this post'];
 
 		$this->updateWhere('items', [
 			'title' => $data->post->title,
@@ -126,11 +126,29 @@ class ItemController extends Controller {
 
 		if(empty($item)) return ['toast' => 'This item does not exist'];
 
-		if($item->user_id !== $this->user->id) return ['toast' => 'You do not own this post...'];
+		if($item->user_id !== $this->user->id && !$this->user->isAdmin()) return ['toast' => 'You do not own this post...'];
 
 		$this->deleteWhere('items', 'id', $data->post->id);
 
 		return ['toast' => 'Item '.$item->title.' deleted'];
+	}
+
+
+	public function taken(Request $data){
+		if(!Account::isLoggedIn()) return ['toast' => 'You need to login'];
+
+		$item = $this->select('items', ['user_id', 'id', 'title', 'gone'], ['id' => $data->post->id], 'Item')->fetch();
+
+		if(empty($item)) return ['toast' => 'This item does not exist'];
+
+		if($item->user_id !== $this->user->id && !$this->user->isAdmin()) return ['toast' => 'You do not own this post...'];
+
+		$this->updateWhere('items', [
+			'gone' => !$item->gone,
+		], ['id' => $item->id]);
+
+		if($item->gone) return ['toast' => 'Item '.$item->title.' is open'];
+		return ['toast' => 'Item '.$item->title.' set as taken'];
 	}
 
 	/*

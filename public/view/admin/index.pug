@@ -1,0 +1,52 @@
+extends ../layout/page
+
+block scripts
+	script(src=$assets.'/js/admin.js')
+
+block content
+	
+	h1 Admin
+	
+	h2 Categories
+	- Render::form('/admin/cats', 'PUT')
+		input.dark(type='text', name='name', placeholder='category name')
+		button(type='submit', name='add_cat') add
+	- Render::formend()
+	table#categories-table
+		thead
+			tr
+				td Category name
+				td(width='100')
+		tbody
+				
+			each $cat in $global->cats_with_ids()
+				tr
+					td #{$cat['name']}
+					td 
+						- Render::form('/admin/cats', 'DELETE')
+							input(type='hidden', name='id', value=$cat['id'])
+							button.delete-icon(type='submit', name='delete_cat') 
+								include ../svg/delete
+						- Render::formend()
+	h2 Users
+	table#users-table
+		thead
+			tr
+				td Full Name
+				td Username
+				td Mail
+				td(width='100')
+		tbody
+				
+			each $u in $users
+				tr
+					td #{$u->get_full_name()}
+					td #{$u->username}
+					td #{$u->mail}
+					td 
+						if ($u->username != $user->username)
+							- Render::form('/admin/user', 'DELETE')
+								input(type='hidden', name='id', value=$u->id)
+								button.delete-icon(type='submit', name='delete_cat') 
+									include ../svg/delete
+							- Render::formend()

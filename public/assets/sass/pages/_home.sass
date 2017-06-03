@@ -1,10 +1,36 @@
+.edit-icon, .delete-icon
+	+margin-top(.5)
+	height: 40px
+	width: 40px
+	border-radius: 50%
+	+box-shadow
+	display: inline-flex
+	justify-content: center
+	align-items: center
+	fill: white
+	transition: transform .3s ease, background-color .3s ease
+	&:hover
+		transform: scale(1.1)
+
+.edit-icon
+	background-color: $color-primary
+	+margin-right(.5)
+	&:hover
+		background-color: lighten($color-primary, 10%)
+.delete-icon
+	background-color: $color-alert
+	padding: 0
+	border: none
+	&:hover
+		background-color: lighten($color-alert, 10%)
+
 .item
 	width: 100%
 	+margin(1 0)
 	//+padding(.5 1)
 	+border-radius
 	+box-shadow
-		
+
 	.item-image
 		width: 100%
 		height: 250px
@@ -14,50 +40,25 @@
 		flex-flow: column
 		justify-content: space-between
 		+padding(0 .5)
-		
+
 		h1
 			color: white
-		
+
 		.actions
 			width: 100%
 			display: flex
 			flex-flow: row
 			justify-content: flex-end
-		
-		.edit-icon, .delete-icon
-			+margin-top(.5)
-			height: 40px
-			width: 40px
-			border-radius: 50%
-			+box-shadow
-			display: inline-flex
-			justify-content: center
-			align-items: center
-			fill: white
-			transition: transform .3s ease, background-color .3s ease
-			&:hover
-				transform: scale(1.1)
-		
-		.edit-icon
-			background-color: $color-primary
-			+margin-right(.5)
-			&:hover
-				background-color: lighten($color-primary, 10%)
-		.delete-icon
-			background-color: $color-alert
-			padding: 0
-			border: none
-			&:hover
-				background-color: lighten($color-alert, 10%)
-			
+
+
 	.item-info
 		+padding(0 .5)
-		
+
 		.owner
 			font-weight: bold
 			+margin-top(1)
 			+typeset(small)
-		
+
 		.categories-icon
 			background-color: $color-dark
 			height: 30px
@@ -70,11 +71,11 @@
 			fill: white
 			svg
 				height: 18px
-		ul 
+		ul
 			+margin-top(1)
 			padding-left: 0px
 			color: white
-			
+
 			li
 				height: 30px
 				position: relative
@@ -98,7 +99,7 @@
 				a
 					position: relative
 					top: -1px
-					
+
 	&.gone
 		opacity: .7
 	&.gone .item-image
@@ -112,9 +113,9 @@
 		font-weight: bold
 		transform: rotateZ(45deg) translateX(-50%) translateY(-50%) scale(3)
 		color: $color-alert
-		
-		
-					
+
+
+
 .toast
 	background-color: $color-success
 	position: absolute
@@ -140,7 +141,7 @@
 	100%
 		transform: translateY(10px)
 		opacity: 0
-		
+
 h1.recent
 	position: relative
 	top: 0px

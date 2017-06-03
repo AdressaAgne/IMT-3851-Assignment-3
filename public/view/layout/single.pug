@@ -1,18 +1,28 @@
 .item-image
-	
-	.actions: if (Account::get_id() == $item->user_id)
-		a(href="/item/edit/".$item->id): .edit-icon: include ../svg/edit
-		- Render::form('item', 'DELETE')
-			input(type='hidden', name="id", value=$item->id)
-			button.delete-icon(type='submit', name='item_delete'): include ../svg/delete
-		- Render::formend()
+	.actions
+		if (Account::isLoggedIn() && (Account::get_id() == $item->user_id))
+			a(href="/item/edit/".$item->id): .edit-icon: include ../svg/edit
+			- Render::form('/item/taken', 'PATCH')
+				input(type='hidden', name="id", value=$item->id)
+				button.taken-icon(type='submit', name='item_taken'): include ../svg/delete
+			- Render::formend()
+		if (Account::isLoggedIn() && $user->isAdmin())
+			- Render::form('/item', 'DELETE')
+				input(type='hidden', name="id", value=$item->id)
+				button.delete-icon(type='submit', name='item_delete'): include ../svg/delete
+			- Render::formend()
 			
 	h1: a(href='/item/'.$item->id) #{$item->title}
 .item-info
 	.owner Published on #{$item->created()} by 
 		a(href='/profile/'.$item->author()->username) #{$item->author()->get_full_name()}
-	p #{$item->description}
-
+	
+	if (isset($items))
+		p 
+			- Render::sub($item->description, 2)
+			...
+	else 
+		p #{$item->description}
 	ul
 		.categories-icon
 			include ../svg/categories

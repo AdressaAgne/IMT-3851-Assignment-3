@@ -11,8 +11,12 @@ class User extends DB {
 		if(is_null($id)) return;
 
 		$user = $this->select('users', ['*'], ['id' => $id])->fetch();
-		foreach ($user as $key => $value) {
-			$this->$key = $value;
+		if($user){
+			foreach ($user as $key => $value) {
+				$this->$key = $value;
+			}
+		} else {
+			$this->username = '';
 		}
 	}
 
@@ -21,7 +25,7 @@ class User extends DB {
 	}
 
 	public function get_full_name(){
-		if(empty($this->name)) return 'Anonymous';
+		if(empty($this->name)) return '[DELETED]';
 
 		return ucwords("{$this->name} {$this->surname}");
 	}

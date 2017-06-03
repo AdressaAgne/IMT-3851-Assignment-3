@@ -52,6 +52,7 @@ Direct::get('/item/edit/{id}', 'ItemController@edit');
 Direct::put('/item/create', 'ItemController@put');
 Direct::get('/item/create', 'ItemController@create');
 Direct::patch('/item/edit', 'ItemController@patch');
+Direct::patch('/item/taken', 'ItemController@taken');
 Direct::get('/register', 'LoginController@register');
 Direct::put('/register', 'LoginController@save');
 
@@ -72,7 +73,10 @@ Direct::get('/messages/new', 'MessageController@new');
 Direct::put('/messages/new', 'MessageController@store');
 
 // admin
-Direct::get('/admin', 'AdminController@index')->auth();
+Direct::get('/admin', 'AdminController@index');
+Direct::delete('/admin/cats', 'AdminController@delete_cat');
+Direct::put('/admin/cats', 'AdminController@put_cat');
+Direct::delete('/admin/user', 'AdminController@delete_user');
 
 // Debug routes
 Direct::debug('/migrate', 'MainController');
