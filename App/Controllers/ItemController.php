@@ -17,14 +17,25 @@ class ItemController extends Controller {
 		LEFT JOIN categories    AS c  ON c.id = ic.category_id
 		LEFT JOIN users         AS u  ON u.id = i.user_id";
 
-	// Multiple items view
+	/**
+	 * Render the index.pug file with items
+	 * @method index
+	 * @author [Agne Ødegaard]
+	 * @return View
+	 */
 	public function index(){
 		return View::make('index', [
 			'items' => $this->query($this->sql.' GROUP BY i.id ORDER BY i.time DESC', 'Item')->fetchAll(),
 		]);
 	}
 
-	// Single item view
+	/**
+	 * Single item view, return index() if item id not pressent, also return index if item does not exist
+	 * @method item
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return View
+	 */
 	public function item(Request $data){
 		if(!isset($data->get->id)) return $this->index();
 
@@ -36,14 +47,25 @@ class ItemController extends Controller {
 		return $this->index();
 	}
 
-	// create an item, view, return to index if not logged in
+	/**
+	 * create an item, view, return to index if not logged in
+	 * @method create
+	 * @author [Agne Ødegaard]
+	 * @return view
+	 */
 	public function create(){
 		if(!Account::isLoggedIn()) return $this->index();
 
 		return View::make('item.create');
 	}
 
-	// Edit item view
+	/**
+	 * Edit item, return index if user is not logged in, user does not own post or id not set
+	 * @method edit
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return View
+	 */
 	public function edit(Request $data){
 		if(!isset($data->get->id) || !Account::isLoggedIn()) return $this->index();
 
@@ -53,9 +75,15 @@ class ItemController extends Controller {
 		return View::make('item.create', ['item' => $item]);
 	}
 
-	// Item Categoriy View
+	/**
+	 * Item category view, return index if no cateogy is set
+	 * @method categories
+	 * @author [Agne Ødegaard]
+	 * @param  Request    $data
+	 * @return View
+	 */
 	public function categories(Request $data){
-		if(!isset($data->get->cat)) return ['error' => 'no category_id'];
+		if(!isset($data->get->cat)) return $this->index();
 		$sql = $this->sql;
 		$sql .= ' WHERE c.name = :cat GROUP BY i.id  ORDER BY i.time DESC';
 		$items = $this->query($sql, [
@@ -68,7 +96,13 @@ class ItemController extends Controller {
 		]);
 	}
 
-	// Create a new item
+	/**
+	 * Ajax: Insert a new item And categories
+	 * @method put
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function put(Request $data){
 		if(empty($data->post->title)) return ['toast' => 'Title is invalid', 'invalid' => 'title'];
 		if(empty($data->post->description)) return ['toast' => 'Description is invalid', 'invalid' => 'description'];
@@ -95,7 +129,13 @@ class ItemController extends Controller {
 		return ['toast' => 'Item '.$data->post->title.' added'];
 	}
 
-	// Edit an item
+	/**
+	 * Ajax: edit a item
+	 * @method patch
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function patch(Request $data){
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to login to post and item'];
 
@@ -121,7 +161,13 @@ class ItemController extends Controller {
 		return ['toast' => 'Item '.$data->post->title.' Updated'];
 	}
 
-	// Delete an item
+	/**
+	 * Ajax: Delete an item
+	 * @method delete
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function delete(Request $data){
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to login'];
 
@@ -137,7 +183,13 @@ class ItemController extends Controller {
 	}
 
 
-	// Updated an item to be taken/gone
+	/**
+	 * ajax: Updated an item to be taken/gone
+	 * @method taken
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function taken(Request $data){
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to login'];
 
@@ -158,7 +210,15 @@ class ItemController extends Controller {
 	/*
 	*  Functions
 	*/
-	// return a single Item
+
+
+	/**
+	 * Get a single item
+	 * @method get_single
+	 * @author [Agne Ødegaard]
+	 * @param  [type]     $id [description]
+	 * @return [type]         [description]
+	 */
 	private function get_single($id){
 		$sql = $this->sql;
 		$sql .= ' WHERE i.id = :id GROUP BY i.id';

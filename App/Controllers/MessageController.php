@@ -5,7 +5,12 @@ use Controller, Request, View, Account, Direct;
 
 class MessageController extends Controller {
 
-	// index / recived messages
+	/**
+	 * index / recived messages
+	 * @method index
+	 * @author [Agne Ødegaard]
+	 * @return View
+	 */
 	public function index(){
 		if(!Account::isLoggedIn()) return Direct::re('/');
 
@@ -14,21 +19,39 @@ class MessageController extends Controller {
 		]);
 	}
 
-	// Inbox / recived messages
+	/**
+	 * AJAX: Inbox / recived messages
+	 * @method inbox
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function inbox(Request $data){
 		if(!Account::isLoggedIn()) return Direct::re('/');
 
 		return $this->user->getInbox();
 	}
 
-	// Outbox / sent messages
+	/**
+	 * AJAX: Outbox / sent messages
+	 * @method outbox
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function outbox(Request $data){
 		if(!Account::isLoggedIn()) return Direct::re('/');
 
 		return $this->user->getOutbox();
 	}
 
-	// GET: new message ui
+	/**
+	 * Create new message view
+	 * @method new
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return View
+	 */
 	public function new(Request $data){
 		if(!Account::isLoggedIn()) return Direct::re('/');
 
@@ -37,7 +60,13 @@ class MessageController extends Controller {
 		]);
 	}
 
-	// Post: send new msg
+	/**
+	 * Ajax: Send the message
+	 * @method store
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function store(Request $data){
 		if(!Account::isLoggedIn()) return Direct::re('/');
 

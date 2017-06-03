@@ -5,9 +5,16 @@ use Controller, Request, View, Account;
 
 class MainController extends Controller {
 
+	// /migrate, to rebuild the database
 	use \MigrateTrait;
 
-	// Main index view
+	/**
+	 * Main index view
+	 * @method index
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return View
+	 */
 	public function index(Request $data){
 		$itemController = new ItemController();
 		$sql = $itemController->sql;

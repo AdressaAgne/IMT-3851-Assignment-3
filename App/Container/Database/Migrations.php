@@ -127,6 +127,7 @@ class Migrations{
 
 		$db->insert('items', [
 			[
+				'gone' => 1,
 				'title' => 'My broken heart for giveaway',
 				'user_id' => 3,
 				'description' => 'My exgirlfriend cheated on me for 6 months, and I finally found out by finding her lover in our bed naked. But my crazy girlfriend tried to deny it, and just ignored the white elephant in the room.
@@ -134,6 +135,7 @@ I was feed up with her attitude, and broke up with her. But she didn’t want to
 But my heart and spirit is completely broken. Therefore I will donate my heart, to anyone who wants to tend for it.',
 			],
 			[
+				'gone' => 0,
 				'title' => 'Children clothes in great condition. ',
 				'user_id' => 2,
 				'description' => 'Hey there, we have a daughter around 4 years old, and she has grown out of her clothes.
@@ -142,6 +144,7 @@ The clothes are in good condition, I also want to mention that we do have some k
 The shoes are almost brand new, and has only been used a few times during children parties.',
 			],
 			[
+				'gone' => 0,
 				'title' => 'Garden furniture, giveaway asap.',
 				'user_id' => 1,
 				'description' => 'We have sofa, and a party tent we would like to give away as soon as possible.
@@ -154,12 +157,14 @@ The tent is quite heavy, its around 20 kg. The sofa is around 45 kg as well, inc
 ',
 			],
 			[
+				'gone' => 0,
 				'title' => 'Giving away 1/2 Kayak',
 				'user_id' => 3,
 				'description' => 'Giving away my whole kayak. The reason I’m writing 1/2 is because, it has some holes at the bottom of the kayak. It is fully functional, but might leak in water. It needs a little love and maintenance, if there is someone out who is a professional kayak repairer this would be a great project for you.
 This kayak is in great condition except the holes as mention. But this model is a Kayak level 5000BMW, meaning its one of a kind. This baby has a smooth ocean glide, and is very easy to navigate but this level of a kayak is more for professionals.',
 			],
 			[
+				'gone' => 0,
 				'title' => 'MINH ROBOT 2.0',
 				'user_id' => 2,
 				'description' => 'Giving away a homemade robot under the name Minh 2.0.
@@ -170,12 +175,14 @@ Another feature the Minh 2.0 can do, is to stand still for decades and not move 
 Minh 2.0 is a little bit heavy, it weights around 150kg. It has wheels so its easily to bring home, by foot or car. You just need to push it.',
 			],
 			[
+				'gone' => 0,
 				'title' => 'Giving away an antique stove',
 				'user_id' => 1,
 				'description' => 'This stove has been through my family generation for ages.
 It seems like it dates back to 1800. Unfortunately, it has been dusting away in the last decade, due to lack of space. Therefore we would like to give it away, to someone who wants this as a collective item or maybe put it in a museum. We welcome antique collectors to take a look!',
 			],
 			[
+				'gone' => 0,
 				'title' => 'Outdoor clothes needs a new home',
 				'user_id' => 2,
 				'description' => 'Im giving some of my sons outdoor clothes.
@@ -186,6 +193,7 @@ the pants are little bit long. Therefore we recommend it for someone of the heig
 Also giving away one snowboard helmet at the 15, male. Has blue stripes on the side, looks really cool. In good condition, never fell with them.',
 			],
 			[
+				'gone' => 0,
 				'title' => 'Letting go of Lego',
 				'user_id' => 3,
 				'description' => 'Our children has now moved on to college, and we have a whole lego collection we want to give away to a family who has children and are in need of toys.
@@ -201,6 +209,7 @@ Lego Batman
 These pieces are in great condition, and we hope you will find joy in these toys.',
 			],
 			[
+				'gone' => 0,
 				'title' => 'BIG SMART TV GIVE AWAY',
 				'user_id' => 1,
 				'description' => 'Giving away my husbands big Samsung smart TV.
@@ -216,6 +225,7 @@ It will suck away your husbands soul, so be warned. Who ever wants this demon, p
  Have a lovely day.',
 			],
 			[
+				'gone' => 0,
 				'title' => 'I never became a wizard',
 				'user_id' => 3,
 				'description' => 'To my fellow nerds, I once read on the Internet that if you stay a virgin until you’re 30, you become a wizard. I waited and waited, and now I’m 40 years old and virgin, but I still have no magic powers.

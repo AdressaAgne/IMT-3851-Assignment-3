@@ -10,6 +10,7 @@ Each member had different strength and weaknesses in the group, therefore we dec
 
 Agne was assigned as our team leader, due to reason that
 he is very skilled with php. His focus was to build the backend on a homemade framework (https://github.com/OrangeeWeb/Teapug). This framework works as any other MVC framework.
+
 Audun is our second in command, he wanted to get hands on with both javascript and php.
 Minh worked with the frontend, and had her hands on sass and pug.
 
@@ -22,9 +23,6 @@ In our second and third meetings, we had long sessions. Meaning, we would execut
 In order for us to complete this project with efficiency, everyone agreed on collaborating on GIT. Meaning each member could work remotely, and easily change the code without any fuss and just push up the new changes whenever we wanted. For our communication we used Messenger.
 
 ## THE DESIGN AND IMPLEMENTATION CHOICES
-Explain the reason behind :
-the reasoning behind your design, and implementation choices (database design, performance, security, frameworks etc.).
-
 The planning phase of this project was a collaborative effort among all group members. Deciding how we would semantically partition the database data into different tables was a key starting point. We have 5 tables, users, messages, item, categories, and item_category.
 
  * Users contains all the information about a user. A user has username and mail as unique keys

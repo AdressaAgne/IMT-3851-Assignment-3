@@ -5,7 +5,13 @@ use Controller, Request, View, Account, Direct;
 
 class ProfileController extends Controller {
 
-	// Profile view
+	/**
+	 * Profile view
+	 * @method index
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return View
+	 */
 	public function index(Request $data){
 		$user = $this->user;
 		if(isset($data->get->username))
@@ -16,7 +22,13 @@ class ProfileController extends Controller {
 		]);
 	}
 
-	// Edit profile View
+	/**
+	 * Edit profile View
+	 * @method edit
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return View
+	 */
 	public function edit(Request $data){
 		if(!Account::isLoggedIn()) return Direct::re('/');
 
@@ -25,7 +37,13 @@ class ProfileController extends Controller {
 		]);
 	}
 
-	// Edit profile api
+	/**
+	 * AJAX: Edit profile
+	 * @method store
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function store(Request $data){
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to be logged in'];
 		if(empty($data->post->name))
@@ -56,7 +74,13 @@ class ProfileController extends Controller {
 		return ['toast' => 'Something happend, try again later'];
 	}
 
-	// patch request, update password
+	/**
+	 * AJAX patch request, update password
+	 * @method patch
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function patch(Request $data){
 		return Account::changePassword(parent::$site_wide_vars['user'], $data->post->old_pw, $data->post->new_pw, $data->post->new_pw2);
 	}

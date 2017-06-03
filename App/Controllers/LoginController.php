@@ -5,12 +5,13 @@ use Controller, Request, View, Account;
 
 class LoginController extends Controller {
 
-	// Login View
-	public function login(Request $data){
-		return View::make('login');
-	}
-
-	// Login post request
+	/**
+	 * Ajax login
+	 * @method login_action
+	 * @author [Agne Ødegaard]
+	 * @param  Request      $data [description]
+	 * @return JSON
+	 */
 	public function login_action(Request $data){
 
 		$msg = Account::login($data->post->username, $data->post->password);
@@ -18,17 +19,34 @@ class LoginController extends Controller {
 		return ['toast' => $msg,];
 	}
 
-	// Register View
+	/**
+	 * Register View
+	 * @method register
+	 * @author [Agne Ødegaard]
+	 * @return View
+	 */
 	public function register(){
 		return View::make('register');
 	}
 
-	// Logout function
+	/**
+	 *  Logout function
+	 * @method logout
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function logout(Request $data){
 		Account::logout();
 		return ['toast' => 'You have logged out'];
 	}
-	//Register function
+	/**
+	 * Ajax: Register a user
+	 * @method save
+	 * @author [Agne Ødegaard]
+	 * @param  Request $data [description]
+	 * @return JSON
+	 */
 	public function save(Request $data){
 		if(empty($data->post->name))
 			return ['toast' => 'Please enter your name'];
@@ -50,7 +68,12 @@ class LoginController extends Controller {
 		return ['status' => $user];
 	}
 
-	// Menu view, fetched with ajax to get the new menu
+	/**
+	 * Ajax: Menu view, fetched with ajax to get the new menu
+	 * @method menu
+	 * @author [Agne Ødegaard]
+	 * @return View
+	 */
 	public function menu(){
 		return View::make('layout.menu');
 	}
