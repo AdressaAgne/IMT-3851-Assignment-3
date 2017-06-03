@@ -1,11 +1,16 @@
 button, input[type=submit], input[type=button], .btn
-    border: 10px solid pink
-    width: 100%
-    background-color: #4CAF50
-    color: white
-    padding: 14px 20px
-    margin: 8px 0
-    border: none
-    border-radius: 4px
-    cursor: pointer
-    
+	width: 100%
+	color: $color-success
+	font-weight: bold
+	background: transparent
+	+padding(.5)
+	+margin-bottom(.5)
+	+border-radius
+	border: 2px solid $color-success
+	cursor: pointer
+	
+	&.dark
+		color: darken($color-success, 20%)
+		border: 2px solid darken($color-success, 20%)
+		
+	

@@ -1,13 +1,51 @@
 input, textarea
-    width: 100%
-    padding: 12px 20px
-    margin: 8px 0
-    display: inline-block
-    border: 1px solid #ccc
-    box-sizing: border-box
+	+padding(.5)
+	width: 100%
+	+margin-bottom(.5)
+	+border-radius
+	border: 2px solid white
+	background: transparent
+	color: white
+	transition: border .3s ease
+	
+	&::-webkit-input-placeholder
+		color: darken(white, 40%)
+	
+	&::placeholder
+		+padding-left(1)
+	&:focus::-webkit-input-placeholder
+	   opacity: 0
+	&:focus
+		outline: none
+		border: 2px solid $color-primary
+		background-image: none !important
+		
+	&.dark
+		border: 2px solid $color-dark
+		color: $color-dark
+		
+		&:focus
+			border: 2px solid $color-primary !important
 
-//input[type=text], input[type=password]
- 
+// Bacground related
+input, textarea
+	background-repeat: no-repeat
+	background-position: 7px 10px
+	background-size: 20px
 
-select[multiple]
-    
+	&#username
+		background-image: url('../img/icons/username.svg')
+	&#password
+		background-image: url('../img/icons/password.svg')
+	&.dark#username
+		background-image: url('../img/icons/username-dark.svg')
+	&.dark#email
+		background-image: url('../img/icons/email-dark.svg')
+	&.dark#password
+		background-image: url('../img/icons/password-dark.svg')
+	&.dark#password-repeat
+		background-image: url('../img/icons/repeat-dark.svg')
+	&.dark#title
+		background-image: url('../img/icons/title-dark.svg')
+	&.dark#description
+		background-image: url('../img/icons/text-dark.svg')

@@ -30,10 +30,10 @@ if (!Account::isLoggedIn())
 					h1 Sign in
 					h3.close#close ✕ 
 					//- &times; er d samme som ✕
-				hr.light
+				//- hr.light
 				span#login-error 
-				input(type='text',placeholder='Username', name='username')
-				input(type='password', placeholder='Password', name='password')
+				input#username(type='text',placeholder='Username', name='username')
+				input#password(type='password', placeholder='Password', name='password')
 				button(type='submit', name='login_submit') Sign in
 			- Render::formend()
 	li

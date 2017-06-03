@@ -135,7 +135,7 @@ function ajaxData(){
 // 	}
 // };
 
-	// Activate navigation drawer when hamburger is clicked
+// Activate navigation drawer when hamburger is clicked
 function refreshMenu(){
 	$(function(){
 		$('.hamburder').off('click');
@@ -167,7 +167,7 @@ function refreshMenu(){
 					return;
 				// Toggle show class if anywhere on body except the login-form is clicked
 				$('.login-form').toggleClass('show hide');
-			};
+			}
 
 			// If categories is clicked
 			if(e.target.id == 'categories')
@@ -183,7 +183,7 @@ function refreshMenu(){
 					return;
 				// Toggle show class if anywhere on body except the categories-list is clicked
 				$('#categories-list').toggleClass('show hide');
-			};
+			}
 
 		});
 	});
@@ -216,3 +216,12 @@ function item_delete(form){
 function create_item(){
 
 }
+
+//# Remove icon from input if a value is present
+$('input, textarea').keyup(function() {
+  if ($(this).val().length !== 0) {
+	return $(this).css('background-image', 'none');
+  } else if ($(this).val().length === 0) {
+	return $(this).css('background-image', '');
+  }
+});
