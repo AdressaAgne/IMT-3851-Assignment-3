@@ -49,20 +49,21 @@ class Account extends DB{
 	 * @param  string  $mail
 	 * @return boolean
 	 */
-	public static function register($username, $pw1, $pw2, $mail){
+	public static function register($username, $pw1, $pw2, $mail, $name, $surname){
 
 		EventListener::call(E_REGISTER);
 
 		if($pw1 != $pw2) return 'passwords does not match';
 
-		if(DB::select('users', ['username'], ['username' => $username])->rowCount() > 0) return 'Username already taken';
-
-		return DB::insert('users',[[
+		$msg = @DB::insert('users',[[
+			'name'  => $name,
+			'surname'  => $surname,
 			'username'  => $username,
 			'password'  => password_hash($pw1, PASSWORD_DEFAULT),
 			'mail'      => $mail,
 		]]);
 
+		return $msg;
 	}
 
 	/**

@@ -8,6 +8,7 @@ class Migrations{
 
 	public static function install(){
 		//$name, $type, $default = null, $not_null = true, $auto_increment = false)
+		Account::logout();
 		$db = new DB();
 
 		$db->clearOut(); // delete database

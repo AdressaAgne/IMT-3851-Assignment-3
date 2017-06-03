@@ -55,18 +55,23 @@ class LoginController extends Controller {
 			return ['toast' => 'Please enter your surname'];
 		if(empty($data->post->username))
 			return ['toast' => 'Please enter your username'];
+		if(empty($data->post->mail))
+			return ['toast' => 'Please enter your mail'];
 		if(empty($data->post->password))
 			return ['toast' => 'Please enter your password'];
 		if(empty($data->post->password_again))
 			return ['toast' => 'Please confirm your password'];
-		if(empty($data->post->mail))
-			return ['toast' => 'Please enter your mail'];
 
+		$msg = Account::register($data->post->username,
+								  $data->post->password,
+								  $data->post->password_again,
+								  $data->post->mail,
+								  $data->post->name,
+								  $data->post->surname);
 
-		$user = Account::register($data->post->username, $data->post->password, $data->post->password_again, $data->post->mail);
-		if(is_numeric($user) && $user > 0)
-			return ['status' => 'ok'];
-		return ['status' => $user];
+		if(is_numeric($msg) && $msg > 0) return ['status' => 'ok', 'toast' => 'You are now a use, Welcome to DIBS', 'username' => $data->post->username];
+		return ['toast' => 'Username or Mail already taken'];
+
 	}
 
 	/**

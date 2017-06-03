@@ -192,14 +192,13 @@ function refreshMenu(){
 			inputBg(item);
 		});
 
-		function inputBg(elm){
-			if ($(elm).val().length !== 0)
-				return $(elm).css('background-image', 'none');
-			return $(elm).css('background-image', '');
-		}
 	});
 }
-
+function inputBg(elm){
+	if ($(elm).val().length !== 0)
+		return $(elm).css('background-image', 'none');
+	return $(elm).css('background-image', '');
+}
 // Register ajax click events
 ajaxData();
 // Register form click events
@@ -222,8 +221,19 @@ function login_submit(){
 	}
 }
 // This is run when the form sith type="submit" and name="register_submit"
-function register_submit(){
-	console.log(this);
+function register_submit(form){
+	if(this.status == 'ok'){
+		$('.login-form').addClass('show').removeClass('hide');
+		$('.login-form input[name=username]').val(this.username);
+		$('.login-form input[name=password]').focus();
+		$(form).fadeOut();
+		$('input, textarea').each(function(key, item) {
+			inputBg(item);
+		});
+		setTimeout(function(){
+			toast('You can now login');
+		}, 3000);
+	}
 }
 // This is run when the form sith type="submit" and name="item_delete"
 function item_delete(form){
