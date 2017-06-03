@@ -229,3 +229,9 @@ function create_item(elm){
 	// Redirect to new page when item was created
 	if(this.id != null) location.href = "/item/"+this.id;
 }
+
+// select2js related
+$(document).ready(function() {
+	// Initiate select2js select field
+	$('#add-categories').select2();
+});

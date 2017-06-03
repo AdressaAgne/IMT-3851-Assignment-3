@@ -7,10 +7,12 @@ block content
 		.row
 			.register.col.col--4-of-12.col--centered
 				h1.center Sign Up
-				input.dark#username(type="text", placeholder="Username", name="username")
-				input.dark#email(type="text", placeholder="name@email.com", name="mail")
-				input.dark#password(type="password", placeholder="Enter Password", name="password")
-				input.dark#password-repeat(type="password", placeholder="Confirm Password", name="password_again")
-				button.dark(type="submit", name="register_submit" class="signupbtn") Sign Up
+				input.dark.icon-username(type="text", placeholder="Name", name="name")
+				input.dark.icon-username(type="text", placeholder="Surname", name="surname")
+				input.dark.icon-username(type="text", placeholder="Username", name="username")
+				input.dark.icon-email(type="text", placeholder="name@email.com", name="mail")
+				input.dark.icon-password(type="password", placeholder="Enter Password", name="password")
+				input.dark.icon-password-repeat(type="password", placeholder="Confirm Password", name="password_again")
+				button.dark.btn(type="submit", name="register_submit" class="signupbtn") Sign Up
 
 	- Render::formend()

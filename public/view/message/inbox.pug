@@ -4,28 +4,29 @@ block scripts
 	script(src=$assets.'/js/inbox.js')
 
 block content
-	h1 Inbox
 	.row
-		.col.col--12-of-12
-			a.icon-message(href="/messages/new") Send new Message  
-	.row	
-		.col.col--12-of-12	
-			a.btn.icon-outbox#outbox View Outbox
-	.row
-		.col.col--12-of-12
-			table#messagebox
-				thead
-					tr
-						td(width='100') Date
-						td(width='200') From
-						td(width='200') To
-						td Message
-						
-				tbody
-					each $msg in $inbox
-						tr
-							td #{$msg->time}
-							td #{$msg->from_user}
-							td #{$msg->to_user}
-							td #{$msg->message}
+		.col--8-of-12.col--centered	
+			h1.center Messages
+			.row
+				.col.col--6-of-12
+					a.btn.dark.icon-outbox(href="/messages/new") Send new Message
+				.col.col--6-of-12
+					a.btn.dark.icon-outbox#outbox View Outbox
+			.row
+				.col.col--12-of-12
+					table#messagebox
+						thead
+							tr
+								td(width='100') Date
+								td(width='200') From
+								td(width='200') To
+								td Message
+								
+						tbody
+							each $msg in $inbox
+								tr
+									td #{$msg->time}
+									td #{$msg->from_user}
+									td #{$msg->to_user}
+									td #{$msg->message}
 				

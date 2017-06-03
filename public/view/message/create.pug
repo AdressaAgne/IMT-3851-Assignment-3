@@ -3,23 +3,19 @@ extends ../layout/page
 block content
 	.row
 		.col.col--12-of-12
-			h1 Write a new Message
-			p: a(href="/messages") Back to Inbox
-
-	.row
-		.col.col--12-of-12
+	
 			- Render::form('', 'PUT')
-				.col.col--12-of-12
-					label To User
-						input.dark.icon-user(type="text", placeholder="Username", name="to_user", list="users")
+				
+				.row
+					.col.col--6-of-12.col--centered
+						h1.center Write a new message
+						h3.center: a.underline(href="/messages") Back to inbox
+						input.dark.icon-username(type="text", placeholder="Send to user", name="to_user", list="users")
 						datalist(id="users")
 							each $u in $users
 								option(value=$u->username)
-				.col.col--12-of-12
-					label
-						textarea.dark(name="msg", placeholder="Message")
-				
-				.col.col--12-of-12
-					input(type="submit", name="sendMessage", value="Send")
+						textarea.dark.icon-description(name="msg", placeholder="Message")
+						input.send.dark.btn(type="submit", name="sendMessage", value="Send")
+							
 			- Render::formend()
 		

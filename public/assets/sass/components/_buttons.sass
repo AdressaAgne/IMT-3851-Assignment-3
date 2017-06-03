@@ -1,4 +1,4 @@
-button, input[type=submit], input[type=button], .btn
+.btn
 	width: 100%
 	color: $color-success
 	font-weight: bold
@@ -8,9 +8,22 @@ button, input[type=submit], input[type=button], .btn
 	+border-radius
 	border: 2px solid $color-success
 	cursor: pointer
-	
+	display: block
+	width: 100%
+	text-align: center
+	transition: border .3s ease, color .3s ease
+	&:hover
+		color: darken($color-success, 20%)
+		border: 2px solid darken($color-success, 20%)
 	&.dark
 		color: darken($color-success, 20%)
 		border: 2px solid darken($color-success, 20%)
+		&:hover
+			color: lighten($color-success, 10%)
+			border: 2px solid lighten($color-success, 10%)
+			
+input.send
+	position: relative
+	top: -5px
 		
 	

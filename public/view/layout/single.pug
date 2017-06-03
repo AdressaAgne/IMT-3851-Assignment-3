@@ -4,7 +4,7 @@
 			a(href="/item/edit/".$item->id): .edit-icon: include ../svg/edit
 			- Render::form('/item/taken', 'PATCH')
 				input(type='hidden', name="id", value=$item->id)
-				button.taken-icon(type='submit', name='item_taken'): include ../svg/delete
+				button.taken-icon(type='submit', name='item_taken'): include ../svg/taken
 			- Render::formend()
 		if (Account::isLoggedIn() && ($user->isAdmin() || (Account::get_id() == $item->user_id)))
 			- Render::form('/item', 'DELETE')

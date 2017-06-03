@@ -1,5 +1,6 @@
-.edit-icon, .delete-icon
+.edit-icon, .delete-icon, .taken-icon
 	+margin-top(.5)
+	+margin-left(.5)
 	height: 40px
 	width: 40px
 	border-radius: 50%
@@ -14,7 +15,6 @@
 
 .edit-icon
 	background-color: $color-primary
-	+margin-right(.5)
 	&:hover
 		background-color: lighten($color-primary, 10%)
 .delete-icon
@@ -23,9 +23,16 @@
 	border: none
 	&:hover
 		background-color: lighten($color-alert, 10%)
+.taken-icon
+	background-color: $color-action
+	padding: 0
+	border: none
+	&:hover
+		background-color: lighten($color-action, 10%)
 
 .item
 	width: 100%
+	transition: opacity .3s ease
 	+margin(1 0)
 	//+padding(.5 1)
 	+border-radius
@@ -117,7 +124,7 @@
 
 .toast
 	background-color: $color-success
-	position: absolute
+	position: fixed
 	bottom: 0
 	right: 0
 	color: white

@@ -32,9 +32,9 @@ if (!Account::isLoggedIn())
 					h1 Sign in
 					h3.close#close ✕ 
 				span#login-error 
-				input#username(type='text',placeholder='Username', name='username')
-				input#password(type='password', placeholder='Password', name='password')
-				button(type='submit', name='login_submit') Sign in
+				input.icon-username(type='text',placeholder='Username', name='username')
+				input.icon-password(type='password', placeholder='Password', name='password')
+				button.btn(type='submit', name='login_submit') Sign in
 			- Render::formend()
 	li
 		.icon: include ../svg/register

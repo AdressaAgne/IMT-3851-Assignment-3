@@ -7,8 +7,8 @@ block content
 		.row
 			.col.col--6-of-12.col--centered	
 				h1.center Give away new item
-				input.dark#title(name="title" placeholder='Title')
-				textarea.dark#description(name='description' placeholder='Description')
+				input.dark.icon-title(name="title" placeholder='Title')
+				textarea.dark.icon-description(name='description' placeholder='Description')
 				br
 				select(multiple, name="cats[]"): each $cat in $global->cats_with_ids()
 					option(value=$cat['id']) #{$cat['name']}
