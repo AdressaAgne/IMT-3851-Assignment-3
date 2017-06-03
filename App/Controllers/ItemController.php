@@ -67,6 +67,9 @@ class ItemController extends Controller {
 
 	// Create a new item
 	public function put(Request $data){
+		if(empty($data->post->title)) return ['toast' => 'Title is invalid', 'invalid' => 'title'];
+		if(empty($data->post->description)) return ['toast' => 'Description is invalid', 'invalid' => 'description'];
+
 		$id = $this->insert('items', [
 			[
 				'user_id' => Account::get_id(),
@@ -75,25 +78,26 @@ class ItemController extends Controller {
 			]
 		]);
 
-		$cats = [];
-		foreach ($data->post->cats as $cat) {
-			$cats[] = [
-				'category_id' => $cat,
-				'item_id' => $id,
-			];
+		if(isset($data->post->cats)){
+			$cats = [];
+			foreach ($data->post->cats as $cat) {
+				$cats[] = [
+					'category_id' => $cat,
+					'item_id' => $id,
+				];
+			}
+
+			$this->insert('item_category', $cats);
 		}
-
-		$this->insert('item_category', $cats);
-
-		return Direct::re('item/'.$id);
+		return ['toast' => 'Item '.$data->post->title.' added'];
 	}
 
 	// Edit an item
 	public function patch(Request $data){
-		if(!Account::isLoggedIn()) return ['status' => 'failed'];
+		if(!Account::isLoggedIn()) return ['toast' => 'You need to login to post and item'];
 
 		$item = $this->select('items', ['user_id', 'id'], ['id' => $data->post->id], 'Item')->fetch();
-		if($item->user_id !== $this->user->id) return ['status' => 'failed'];
+		if($item->user_id !== $this->user->id) return ['toast' => 'You do not own this post'];
 
 		$this->updateWhere('items', [
 			'title' => $data->post->title,
@@ -111,14 +115,14 @@ class ItemController extends Controller {
 		$this->insert('item_category', $cats);
 
 
-		return Direct::re('item/'.$item->id);
+		return ['toast' => 'Item '.$data->post->title.' Updated'];
 	}
 
 	// Delete an item
 	public function delete(Request $data){
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to login'];
 
-		$item = $this->select('items', ['user_id', 'id'], ['id' => $data->post->id], 'Item')->fetch();
+		$item = $this->select('items', ['user_id', 'id', 'title'], ['id' => $data->post->id], 'Item')->fetch();
 
 		if(empty($item)) return ['toast' => 'This item does not exist'];
 
@@ -126,7 +130,7 @@ class ItemController extends Controller {
 
 		$this->deleteWhere('items', 'id', $data->post->id);
 
-		return ['toast' => 'Item deleted'];
+		return ['toast' => 'Item '.$item->title.' deleted'];
 	}
 
 	/*

@@ -27,19 +27,20 @@ function registerFromEvents(){
 		$('form').submit(function(e){
 			e.preventDefault();
 			var data = {};
+			var _this = $(this);
 			// calling function for form
 			var successFunc = $(this).find('[type=submit]').attr('name');
 
 			// Assigning key and names to data object
-			$(this).find('input').each(function(key,item){
+			$(this).find('input, textarea, select').each(function(key,item){
 				data[$(item).attr('name')] = $(item).val();
 			});
 
 			// calling ajax
 			ajax($(this).attr('action'), data, function(json) {
 				$('span.input-error').remove();
-				if(typeof data.invalid != null){
-					$('input[name='+data.invalid+']').after('<span class="input-error">'+data.invalid+' is Invalid</span>');
+				if(typeof json.invalid != undefined && json.invalid != null){
+					$('input[name='+json.invalid+']').after('<span class="input-error">'+data.invalid+' is Invalid</span>');
 				}
 
 				if(typeof json.toast != undefined && json.toast != null){
@@ -47,7 +48,7 @@ function registerFromEvents(){
 				}
 				// check if the submit button name is a function, and call it. setting the this varibale to the json data
 				if(typeof window[successFunc] == 'function') {
-					window[successFunc].call(json, $(this));
+					window[successFunc].call(json, _this);
 				} else {
 					console.log('please add function: ' + successFunc, 'Outside of the jQuery function $(function(){})');
 				}
@@ -209,5 +210,9 @@ function register_submit(){
 }
 
 function item_delete(form){
-	$(form).parent().slideUp();
+	$(form).parent().parent().parent().slideUp();
+}
+
+function create_item(){
+
 }
