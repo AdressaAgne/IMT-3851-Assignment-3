@@ -62,7 +62,7 @@ function registerFromEvents(){
 		$('#logout').click(function(){
 			fetch('/logout', function(){
 				// Redirect to index if lgout was successfull
-				location.href = "/";
+				location.href = '/';
 			});
 		});
 	});
@@ -227,7 +227,7 @@ function item_delete(form){
 // This is run when the form sith type="submit" and name="create_item"
 function create_item(elm){
 	// Redirect to new page when item was created
-	if(this.id != null) location.href = "/item/"+this.id;
+	if(this.id != null) location.href = '/item/'+this.id;
 }
 
 // select2js related
