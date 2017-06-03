@@ -3,6 +3,8 @@
 Set the public folder as your document root. if you choose to not do this, go public/.htaccess and edit your path there.
 To access the MySQL database, go to App/Container/Config.php and edit your database settings. You do not need to make the database in PhpMyAdmin, the framework should handle that by its own.
 
+You can also to go https://oblig3.agne.no to see the website.
+
 # Programming for the Web II (IMT3851)
 
 In our team, we have Agne Ødegaard, Audun Olsen and Minh Nguyen.
