@@ -6,7 +6,7 @@
 				input(type='hidden', name="id", value=$item->id)
 				button.taken-icon(type='submit', name='item_taken'): include ../svg/delete
 			- Render::formend()
-		if (Account::isLoggedIn() && $user->isAdmin())
+		if (Account::isLoggedIn() && ($user->isAdmin() || (Account::get_id() == $item->user_id)))
 			- Render::form('/item', 'DELETE')
 				input(type='hidden', name="id", value=$item->id)
 				button.delete-icon(type='submit', name='item_delete'): include ../svg/delete
