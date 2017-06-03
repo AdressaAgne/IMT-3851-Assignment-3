@@ -10,14 +10,14 @@ if (Account::isLoggedIn())
 		a(href=$source.'/item/create') Give away
 	li
 		.icon: include ../svg/list
-		a(href=$source.'/profile/items') Your items
+		a(href=$source.'/profile') Your items
 	li
 		.icon: include ../svg/inbox
-		a(href=$source.'/inbox') Inbox
+		a(href=$source.'/messages') Inbox
 	hr
 	li
 		.icon: include ../svg/user
-		a(href=$source.'/profile') Edit profile
+		a(href=$source.'/profile/edit') Edit profile
 	li
 		.icon: include ../svg/logout
 		a(href='#')#logout Logout

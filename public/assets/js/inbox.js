@@ -21,7 +21,7 @@ $(function(){
 					$("#messagebox tbody").append(row);
 				});
 				index = (index == 1) ? 0 : 1;
-				$(_this).text(url[index]);
+				$(_this).text('View ' + url[index]);
 			}
 		});
 	});

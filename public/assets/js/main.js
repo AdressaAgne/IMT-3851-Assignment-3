@@ -51,7 +51,7 @@ function registerFromEvents(){
 				if(typeof window[successFunc] == 'function') {
 					window[successFunc].call(json, _this);
 				} else {
-					console.log('please add function: ' + successFunc, 'Outside of the jQuery function $(function(){})');
+					if(typeof successFunc != undefined) console.log('please add function: ' + successFunc, 'Outside of the jQuery function $(function(){})');
 				}
 			});
 		});
@@ -73,8 +73,9 @@ function ajax(url, data, successCallback, fail){
 		$.post({
 			url : url,
 			data : data,
-			dataType : 'JSON',
+
 			success : function(e){
+				console.log(e);
 				if(typeof successCallback == 'function') successCallback(e);
 			},
 			error : function(e, str){
@@ -223,9 +224,15 @@ function create_item(){
 
 //# Remove icon from input if a value is present
 $('input, textarea').keyup(function() {
-  if ($(this).val().length !== 0) {
-	return $(this).css('background-image', 'none');
-  } else if ($(this).val().length === 0) {
-	return $(this).css('background-image', '');
-  }
+	inputBg(this);
 });
+
+$('input, textarea').each(function(key, item) {
+	inputBg(item);
+});
+
+function inputBg(elm){
+	if ($(elm).val().length !== 0)
+		return $(elm).css('background-image', 'none');
+	return $(elm).css('background-image', '');
+}

@@ -59,6 +59,7 @@ Direct::put('/register', 'LoginController@save');
 Direct::get('/category/{cat?}', 'ItemController@categories');
 
 // Profile
+
 Direct::get('/profile/{username?}', 'ProfileController@index');
 Direct::get('/profile/edit', 'ProfileController@edit');
 Direct::patch('/profile/edit', 'ProfileController@store');

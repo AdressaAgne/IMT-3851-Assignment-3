@@ -27,19 +27,20 @@ class Message extends DB {
 
 	public function save($to, $from, $msg){
 		if(is_string($to)){
-			$to = $this->select('users', ['id'], ['username' => $to])->fetch()['id'];
-			if(is_null($to)) return false;
+			$to = $this->select('users', ['id', 'username'], ['username' => $to])->fetch();
+			if(is_null($to['id'])) return ['toast' => 'user does not exist'];
 		}
+
 		$this->id = $this->insert('messages', [
 			[
 				'from_user' => $from,
-				'to_user'   => $to,
+				'to_user'   => $to['id'],
 				'message' => $msg,
 			],
 		]);
 
 		$this->time = time();
-		return $this;
+		return ['toast' => 'Message was sent to '.$to['username']];
 	}
 
 	public function created(){

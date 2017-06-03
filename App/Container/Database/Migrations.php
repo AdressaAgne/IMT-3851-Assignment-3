@@ -22,7 +22,7 @@ class Migrations{
 			new Varchar('mail'),
 			new Varchar('password'),
 			new Boolean('admin', 0),
-		])->unique('username', 'mail');
+		])->unique('username')->unique('mail');
 
 		$db->createTable('items', [
 			new PID(),
@@ -68,52 +68,49 @@ class Migrations{
 				'name' => 'Agne',
 				'surname' => 'Ødegaard',
 				'username' => 'agneo',
+				'mail' => 'agne@agne.agne',
 				'password' => $pw,
 			],
 			[
 				'name' => 'Audun',
 				'surname' => 'Meek Olsen',
 				'username' => 'amo',
+				'mail' => 'audun@audun.audun',
 				'password' => $pw,
 			],
 			[
 				'name' => 'Minh',
 				'surname' => 'n',
 				'username' => 'minh',
+				'main' => 'minh@minh.minh',
 				'password' => $pw,
 			],
 		]);
 
 		$db->insert('categories', [
 			[
-				'name' => 'Sport',
-			],
-			[
-				'name' => 'Hentai',
-			],
-			[
-				'name' => 'Octopuslove',
+				'name' => 'Sports',
 			],
 			[
 				'name' => 'Clothing',
 			],
 			[
-				'name' => 'Minh',
+				'name' => 'Outdoors',
 			],
 			[
-				'name' => 'Hage',
+				'name' => 'Livingroom',
 			],
 			[
-				'name' => 'Stue',
+				'name' => 'Kitchen',
 			],
 			[
-				'name' => 'Kjøkken',
+				'name' => 'Toys',
 			],
 			[
-				'name' => 'Barn',
+				'name' => 'Nature',
 			],
 			[
-				'name' => 'Natur',
+				'name' => 'Electronics',
 			],
 		]);
 

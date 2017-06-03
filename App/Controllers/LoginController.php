@@ -13,8 +13,8 @@ class LoginController extends Controller {
 	public function login_action(Request $data){
 
 		$msg = Account::login($data->post->username, $data->post->password);
-
-		return ['status' => $msg, 'toast' => 'Welcome ' . $data->post->username];
+		if($msg === true) return ['toast' => 'Welcome ' . $data->post->username];
+		return ['toast' => $msg];
 	}
 
 	public function register(){

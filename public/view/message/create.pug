@@ -1,24 +1,25 @@
 extends ../layout/page
 
 block content
-	h1 Inbox
-	p: a(href="/messages") Inbox
-	
-	- Render::form('', 'PUT')
-	
 	.row
-		label To User
-			input(type="text", placeholder="username", name="to_user", list="users")
-			datalist(id="users")
-				each $u in $users
-					option(value=$u->username)
-	
+		.col.col--12-of-12
+			h1 Write a new Message
+			p: a(href="/messages") Back to Inbox
+
 	.row
-		label
-			textarea(name="msg")
-	
-	.row
-		input(type="submit", id="send", value="Send")
-	
-	- Render::formend()
-	
+		.col.col--12-of-12
+			- Render::form('', 'PUT')
+				.col.col--12-of-12
+					label To User
+						input.dark.icon-user(type="text", placeholder="Username", name="to_user", list="users")
+						datalist(id="users")
+							each $u in $users
+								option(value=$u->username)
+				.col.col--12-of-12
+					label
+						textarea.dark(name="msg", placeholder="Message")
+				
+				.col.col--12-of-12
+					input(type="submit", name="sendMessage", value="Send")
+			- Render::formend()
+		

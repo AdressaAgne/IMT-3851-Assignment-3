@@ -35,9 +35,11 @@ class MessageController extends Controller {
 
 	// Post: send new msg
 	public function store(Request $data){
+		if(empty($data->post->to_user)) return ['toast' => 'Fill inn a user'];
+		if(empty($data->post->msg)) return ['toast' => 'Please write a message'];
 		if(Account::isLoggedIn()) {
-			$this->user->sendMessage($data->post->to_user, $data->post->msg);
-			return $this->index();
+			$msg = $this->user->sendMessage($data->post->to_user, $data->post->msg);
+			return $msg;
 		}
 	}
 }

@@ -7,9 +7,6 @@ use DB, Message;
 
 class User extends DB {
 
-	private $password;
-	private $time;
-
 	public function __construct($id = null){
 		if(is_null($id)) return;
 

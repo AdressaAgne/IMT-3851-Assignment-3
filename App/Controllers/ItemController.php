@@ -47,7 +47,7 @@ class ItemController extends Controller {
 		$item = $this->get_single($data->get->id);
 		if(Account::get_id() != $item->user_id) return $this->index();
 
-		return View::make('item.edit', ['item' => $item]);
+		return View::make('item.create', ['item' => $item]);
 	}
 
 	// Item Categoriy View
