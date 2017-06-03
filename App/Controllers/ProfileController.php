@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use Controller, Request, View, Account;
+use Controller, Request, View, Account, Direct;
 
 class ProfileController extends Controller {
 
@@ -18,7 +18,7 @@ class ProfileController extends Controller {
 
 	// Edit profile View
 	public function edit(Request $data){
-		if(!Account::isLoggedIn()) return $this->index();
+		if(!Account::isLoggedIn()) return Direct::re('/');
 
 		return View::make('profile.edit', [
 			'profile' => $this->user,

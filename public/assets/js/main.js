@@ -191,6 +191,20 @@ function refreshMenu(){
 			}
 
 		});
+		//# Remove icon from input if a value is present
+		$('input, textarea').keyup(function() {
+			inputBg(this);
+		});
+
+		$('input, textarea').each(function(key, item) {
+			inputBg(item);
+		});
+
+		function inputBg(elm){
+			if ($(elm).val().length !== 0)
+				return $(elm).css('background-image', 'none');
+			return $(elm).css('background-image', '');
+		}
 	});
 }
 
@@ -200,6 +214,7 @@ ajaxData();
 registerFromEvents();
 refreshMenu()
 
+// This is run when the form sith type="submit" and name="login_submit"
 function login_submit(){
 	if(this.status === true){
 		fetch('/menu', function(data){
@@ -209,30 +224,15 @@ function login_submit(){
 		$('#login-error').html(this.status);
 	}
 }
-
+// This is run when the form sith type="submit" and name="register_submit"
 function register_submit(){
 	console.log(this);
 }
-
+// This is run when the form sith type="submit" and name="item_delete"
 function item_delete(form){
 	$(form).parent().parent().parent().slideUp();
 }
-
+// This is run when the form sith type="submit" and name="create_item"
 function create_item(){
 
-}
-
-//# Remove icon from input if a value is present
-$('input, textarea').keyup(function() {
-	inputBg(this);
-});
-
-$('input, textarea').each(function(key, item) {
-	inputBg(item);
-});
-
-function inputBg(elm){
-	if ($(elm).val().length !== 0)
-		return $(elm).css('background-image', 'none');
-	return $(elm).css('background-image', '');
 }

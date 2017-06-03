@@ -70,6 +70,7 @@ class Migrations{
 				'username' => 'agneo',
 				'mail' => 'agne@agne.agne',
 				'password' => $pw,
+				'admin' => 0,
 			],
 			[
 				'name' => 'Audun',
@@ -77,6 +78,7 @@ class Migrations{
 				'username' => 'amo',
 				'mail' => 'audun@audun.audun',
 				'password' => $pw,
+				'admin' => 0,
 			],
 			[
 				'name' => 'Minh',
@@ -84,6 +86,15 @@ class Migrations{
 				'username' => 'minh',
 				'main' => 'minh@minh.minh',
 				'password' => $pw,
+				'admin' => 0,
+			],
+			[
+				'name' => 'admin',
+				'surname' => 'adminsen',
+				'username' => 'admin',
+				'main' => 'admin@admin.admin',
+				'password' => bcrypt('admin'),
+				'admin' => 1,
 			],
 		]);
 
