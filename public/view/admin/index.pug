@@ -7,7 +7,7 @@ block content
 	
 	h1.center Admin
 	h3 Categories
-	- Render::form('/admin/cats', 'PUT')
+	- Render::form($source.'/admin/cats', 'PUT')
 		input.dark.icon-category(type='text', name='name', placeholder='category name')
 		button.btn(type='submit', name='add_cat') add
 	- Render::formend()
@@ -22,7 +22,7 @@ block content
 				tr
 					td #{$cat['name']}
 					td 
-						- Render::form('/admin/cats', 'DELETE')
+						- Render::form($source.'/admin/cats', 'DELETE')
 							input(type='hidden', name='id', value=$cat['id'])
 							button.delete-icon(type='submit', name='delete_cat') 
 								include ../svg/delete
@@ -44,7 +44,7 @@ block content
 					td #{$u->mail}
 					td 
 						if ($u->username != $user->username)
-							- Render::form('/admin/user', 'DELETE')
+							- Render::form($source.'/admin/user', 'DELETE')
 								input(type='hidden', name='id', value=$u->id)
 								button.delete-icon(type='submit', name='delete_cat') 
 									include ../svg/delete

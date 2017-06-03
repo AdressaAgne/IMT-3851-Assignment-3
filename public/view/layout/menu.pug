@@ -27,7 +27,7 @@ if (!Account::isLoggedIn())
 		.icon: include ../svg/user
 		| Login
 		#login-form.login-form.hide
-			- Render::form('/login', 'POST')
+			- Render::form($source.'/login', 'POST')
 				.form-header
 					h1 Sign in
 					h3.close#close ✕ 
@@ -38,7 +38,7 @@ if (!Account::isLoggedIn())
 			- Render::formend()
 	li
 		.icon: include ../svg/register
-		a(href='/register') Register
+		a(href=$source.'/register') Register
 if (Account::isLoggedIn() && $user->isAdmin())
 	li
 		.icon: include ../svg/wrench

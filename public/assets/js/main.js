@@ -75,6 +75,7 @@ function ajax(url, data, successCallback, fail){
 			url : url,
 			data : data,
 			success : function(e){
+				console.log(e);
 				if(typeof successCallback == 'function') successCallback(e);
 			},
 			error : function(e, str){

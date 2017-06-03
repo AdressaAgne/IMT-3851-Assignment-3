@@ -15,4 +15,4 @@ RewriteCond  %{REQUEST_FILENAME} !-d
 # add a folder path if you use subfolders, wich i realy do not recomend...
 #RewriteRule  ^(.*)$ foldername/index.php?param=$1 [QSA,L]
 
-RewriteRule  ^(.*)$ index.php?param=$1 [QSA,L]
+RewriteRule  ^(.*)$ public/index.php?param=$1 [QSA,L]

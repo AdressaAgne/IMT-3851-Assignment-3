@@ -2,8 +2,8 @@ extends ../layout/page
 
 block content
 	
-	- if (isset($item)) Render::form('/item/edit', 'PATCH', ['class' => 'row'])
-	- if (!isset($item)) Render::form('', 'PUT', ['class' => 'row'])
+	- if (isset($item)) Render::form($source.'/item/edit', 'PATCH', ['class' => 'row'])
+	- if (!isset($item)) Render::form($source.'/item/create', 'PUT', ['class' => 'row'])
 		.row
 			.col.col--6-of-12.col--centered	
 				if (isset($item))		
@@ -19,7 +19,8 @@ block content
 					else
 						option(value=$cat['id']) #{$cat['name']}
 						
-				if (isset($item))		
+				if (isset($item))
+					input(type='hidden', name='id', value=$item->id)
 					button.btn.dark(type='submit', name='create_item') Edit item
 				else
 					button.btn.dark(type='submit', name='create_item') Post item

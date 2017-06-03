@@ -30,13 +30,16 @@ class View {
 			$info = pathinfo($filename);
 
 			if(Config::$tale_pug){
-				$code = shell_exec('php ../App/Plugins/Vendor/bin/tale-pug compile '.$filename.((Config::$tale_pug_pretty ? ' --pretty' : '')));
+				//$code = shell_exec('php ../App/Plugins/Vendor/bin/tale-pug compile '.$filename.((Config::$tale_pug_pretty ? ' --pretty' : '')));
+				$file = $filename;
+				include('../App/Plugins/Vendor/bin/tale-pug');
+
 				if(preg_match('/^Fatal error/um', $code))
 					dd('Pug Compiling Error:' . $code);
 			} else {
 				$code = Render::code(file_get_contents($filename));
 			}
-			
+
 
 			ob_start();
 				if(!is_null($vars)) extract($vars);

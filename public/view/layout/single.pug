@@ -1,21 +1,21 @@
 .item-image(style='background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5)), url(https://placewars.agne.no/1000/600?'.$item->id.') no-repeat center center')
 	.actions
 		if (Account::isLoggedIn() && (Account::get_id() == $item->user_id))
-			a(href='/item/edit/'.$item->id): .edit-icon: include ../svg/edit
-			- Render::form('/item/taken', 'PATCH')
+			a(href=$source.'/item/edit/'.$item->id): .edit-icon: include ../svg/edit
+			- Render::form($source.'/item/taken', 'PATCH')
 				input(type='hidden', name='id', value=$item->id)
 				button.taken-icon(type='submit', name='item_taken'): include ../svg/taken
 			- Render::formend()
 		if (Account::isLoggedIn() && ($user->isAdmin() || (Account::get_id() == $item->user_id)))
-			- Render::form('/item', 'DELETE')
+			- Render::form($source.'/item', 'DELETE')
 				input(type='hidden', name='id', value=$item->id)
 				button.delete-icon(type='submit', name='item_delete'): include ../svg/delete
 			- Render::formend()
 			
-	h1: a(href='/item/'.$item->id) #{$item->title}
+	h1: a(href=$source.'/item/'.$item->id) #{$item->title}
 .item-info
 	.owner Published on #{$item->created()} by 
-		a(href='/profile/'.$item->author()->username) #{$item->author()->get_full_name()}
+		a(href=$source.'/profile/'.$item->author()->username) #{$item->author()->get_full_name()}
 	
 	if (isset($items))
 		p 
