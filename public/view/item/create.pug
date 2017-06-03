@@ -13,7 +13,7 @@ block content
 				input.dark.icon-title(name='title' placeholder='Title', value=$item->title)
 				textarea.dark.icon-description(name='description' placeholder='Description') #{$item->description}
 				br
-				select#add-categories(multiple='multiple', name='cats[]'): each $cat in $global->cats_with_ids()
+				select#add-categories(multiple='multiple', name='cats[]' style='width: 100%'): each $cat in $global->cats_with_ids()
 					if (isset($item) && in_array($cat['name'], $item->get_categories()))
 						option(value=$cat['id'], selected) #{$cat['name']}
 					else
@@ -21,7 +21,7 @@ block content
 						
 				if (isset($item))		
 					button.btn.dark(type='submit', name='create_item') Edit item
-				else 
+				else
 					button.btn.dark(type='submit', name='create_item') Post item
 					
 		- Render::formend()

@@ -5,12 +5,11 @@ block scripts
 
 block content
 	
-	h1 Admin
-	
-	h2 Categories
+	h1.center Admin
+	h3 Categories
 	- Render::form('/admin/cats', 'PUT')
-		input.dark(type='text', name='name', placeholder='category name')
-		button(type='submit', name='add_cat') add
+		input.dark.icon-category(type='text', name='name', placeholder='category name')
+		button.btn(type='submit', name='add_cat') add
 	- Render::formend()
 	table#categories-table
 		thead

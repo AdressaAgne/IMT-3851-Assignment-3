@@ -50,7 +50,7 @@ function bcrypt($str){
 require_once('../App/RouteSetup.php');
 
 // require the application
-require_once("../App/Container/App.php");
+require_once('../App/Container/App.php');
 
 // Run App constrcut everything
 new App();

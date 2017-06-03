@@ -239,4 +239,5 @@ function create_item(elm){
 $(document).ready(function() {
 	// Initiate select2js select field
 	$('#add-categories').select2();
+	$('.select2-search__field').attr('placeholder', 'Add categories')
 });

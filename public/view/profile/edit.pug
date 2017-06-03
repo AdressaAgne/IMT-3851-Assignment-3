@@ -7,13 +7,13 @@ block content
 		.row
 			.register.col.col--4-of-12.col--centered
 				h1.center Edit profile
-				input.dark.icon-name(type="text", placeholder="Name", name="name", value=$profile->name)
-				input.dark.icon-surname(type="text", placeholder="Surname", name="surname", value=$profile->surname)
-				input.dark.icon-username(type="text", placeholder="Username", name="username", value=$profile->username)
-				input.dark.icon-email(type="text", placeholder="name@email.com", name="mail" value=$profile->mail)
-				input.dark.icon-password(type="password", placeholder="Enter Old Password", name="password_old")
-				input.dark.icon-password(type="password", placeholder="Enter Password", name="password")
-				input.dark.icon-password-repeat(type="password", placeholder="Confirm Password", name="password_again")
-				button.dark.btn(type="submit", class="signupbtn") Edit
+				input.dark.icon-name(type='text', placeholder='Name', name='name', value=$profile->name)
+				input.dark.icon-surname(type='text', placeholder='Surname', name='surname', value=$profile->surname)
+				input.dark.icon-username(type='text', placeholder='Username', name='username', value=$profile->username)
+				input.dark.icon-email(type='text', placeholder='name@email.com', name='mail' value=$profile->mail)
+				input.dark.icon-password(type='password', placeholder='Enter Old Password', name='password_old')
+				input.dark.icon-password(type='password', placeholder='Enter Password', name='password')
+				input.dark.icon-password-repeat(type='password', placeholder='Confirm Password', name='password_again')
+				button.dark.btn(type='submit', class='signupbtn') Edit
 
 	- Render::formend()

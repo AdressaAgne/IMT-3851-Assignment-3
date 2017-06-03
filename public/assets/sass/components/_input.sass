@@ -49,3 +49,57 @@ input, textarea
 		background-image: url('../img/icons/title-dark.svg')
 	&.dark.icon-description
 		background-image: url('../img/icons/text-dark.svg')
+	&.dark.icon-category
+		background-image: url('../img/icons/categories-dark.svg')
+	&.select2-search__field
+		background-repeat: no-repeat !important
+		background-position: 7px 5px !important
+		background-size: 20px !important
+		background-image: url('../img/icons/categories-dark.svg') !important
+		&::placeholder
+			padding-left: 35px !important
+		&:focus
+			background-image: none !important
+		
+.select2-container--default.select2-container--focus .select2-selection--multiple
+	border: solid 2px $color-primary !important
+	transition: border .3s ease
+	background: transparent
+	color: $color-dark
+	
+.select2-container--default .select2-selection--multiple
+	position: relative
+	top: -5px
+	border: 2px solid $color-dark
+	+border-radius
+	+margin-bottom(.5)
+	cursor: text
+	
+.select2-dropdown
+	border: 2px solid $color-primary
+	position: relative
+	top: -17px
+	
+.select2-search__field
+	color: $color-dark
+	line-height: 32px
+	width: 160px !important
+	
+.select2-container--default .select2-results__option[aria-selected=true]
+	background-color: transparent !important
+	&::after
+		content: ' ✓'
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]
+	background-color: $color-primary !important
+	
+.select2-selection__choice
+	height: 32px !important
+	line-height: 32px !important
+	color: white !important
+	+typeset(tag)
+	background-color: $color-dark !important
+	border: none !important
+	transition: color .3s ease !important
+	.select2-selection__choice__remove:hover
+		color: $color-alert !important

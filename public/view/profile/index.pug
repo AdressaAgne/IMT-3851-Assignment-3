@@ -5,6 +5,6 @@ block scripts
 
 block content
 	 
-	h1 #{ $profile->get_full_name() }
+	h1.center.recent #{ $profile->get_full_name() }
 	each $item in $profile->getItems()
 		include ../layout/item
