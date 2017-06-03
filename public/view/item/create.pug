@@ -1,17 +1,27 @@
 extends ../layout/page
 
 block content
-
-	- Render::form('', 'PUT', ['class' => 'row'])
-		
+	
+	- if (isset($item)) Render::form('/item/edit', 'PATCH', ['class' => 'row'])
+	- if (!isset($item)) Render::form('', 'PUT', ['class' => 'row'])
 		.row
 			.col.col--6-of-12.col--centered	
-				h1.center Give away new item
-				input.dark.icon-title(name="title" placeholder='Title')
-				textarea.dark.icon-description(name='description' placeholder='Description')
+				if (isset($item))		
+					h1.center Edit item
+				else
+					h1.center Give away new item
+				input.dark.icon-title(name='title' placeholder='Title', value=$item->title)
+				textarea.dark.icon-description(name='description' placeholder='Description') #{$item->description}
 				br
-				select(multiple, name="cats[]"): each $cat in $global->cats_with_ids()
-					option(value=$cat['id']) #{$cat['name']}
-				button.dark(type='submit', name='create_item') Post item
-				
-	- Render::formend()
+				select#add-categories(multiple='multiple', name='cats[]'): each $cat in $global->cats_with_ids()
+					if (isset($item) && in_array($cat['name'], $item->get_categories()))
+						option(value=$cat['id'], selected) #{$cat['name']}
+					else
+						option(value=$cat['id']) #{$cat['name']}
+						
+				if (isset($item))		
+					button.btn.dark(type='submit', name='create_item') Edit item
+				else 
+					button.btn.dark(type='submit', name='create_item') Post item
+					
+		- Render::formend()
