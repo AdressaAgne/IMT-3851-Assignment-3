@@ -7,6 +7,10 @@ html
 body
 	color: $color-dark
 	fill: $color-dark
+	// Sticky footer related 
+	display: flex
+	min-height: 100vh
+	flex-direction: column
 		
 hr
 	background-color: $color-dark
@@ -22,6 +26,10 @@ main
 	margin: 0 auto
 	+padding(0 1)
 	width: 100vw
+	flex: 1
+	display: flex
+	flex-flow: column
+	justify-content: center
 	
 .logo
 	+typeface(sans-serif)
