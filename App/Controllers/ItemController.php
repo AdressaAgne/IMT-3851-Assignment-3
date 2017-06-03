@@ -126,7 +126,7 @@ class ItemController extends Controller {
 
 			$this->insert('item_category', $cats);
 		}
-		return ['toast' => 'Item '.$data->post->title.' added'];
+		return ['toast' => 'Item '.$data->post->title.' added', 'id' => $id];
 	}
 
 	/**

@@ -20,7 +20,7 @@ class MainController extends Controller {
 		$sql = $itemController->sql;
 
 		return View::make('index', [
-			'items' => $this->query($sql.' GROUP BY i.id', 'Item')->fetchAll(),
+			'items' => $this->query($sql.' GROUP BY i.id ORDER BY i.time DESC', 'Item')->fetchAll(),
 		]);
 	}
 }

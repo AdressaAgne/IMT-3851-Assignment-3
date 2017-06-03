@@ -1,4 +1,6 @@
 $(function(){
+
+	// Add sticky menu on scroll
 	$(window).scroll(function(){
 		if ($(window).width() > 700 )
 		   if($(this).scrollTop() > 49){
@@ -13,6 +15,8 @@ $(function(){
 				$('header').css('margin-bottom', '0px');
 		   }
    })
+
+	   // Go back if an element with data-back attribute is clicked
 	$('[data-back]').click(function(){
 		console.log(this);
 		window.history.back();
@@ -39,15 +43,12 @@ function registerFromEvents(){
 
 			// calling ajax
 			ajax($(this).attr('action'), data, function(json) {
-				$('span.input-error').remove();
-				if(typeof json.invalid != undefined && json.invalid != null){
-					$('input[name='+json.invalid+']').after('<span class="input-error">'+data.invalid+' is Invalid</span>');
-				}
 
+				// If responce has a toast param, show toast
 				if(typeof json.toast != undefined && json.toast != null){
 					toast(json.toast);
 				}
-				// check if the submit button name is a function, and call it. setting the this varibale to the json data
+				// check if the submit button name is a function, and call it. setting the this varibale to the json data, wroks same way as call_user_func_array in php
 				if(typeof window[successFunc] == 'function') {
 					window[successFunc].call(json, _this);
 				} else {
@@ -57,25 +58,23 @@ function registerFromEvents(){
 		});
 
 		$('#logout').off('click');
-
+		// Fetch new menu and logout the user
 		$('#logout').click(function(){
 			fetch('/logout', function(){
-				fetch('/menu', function(data){
-					$('.drawer ul').html(data);
-				});
+				// Redirect to index if lgout was successfull
+				location.href = "/";
 			});
 		});
 	});
 }
 
+// Simple jQuery ajax shorthand
 function ajax(url, data, successCallback, fail){
 	$(function(){
 		$.post({
 			url : url,
 			data : data,
-
 			success : function(e){
-				console.log(e);
 				if(typeof successCallback == 'function') successCallback(e);
 			},
 			error : function(e, str){
@@ -90,6 +89,7 @@ function ajax(url, data, successCallback, fail){
 	});
 }
 
+// Simple jQuery ajax for get requests
 function fetch(url, func){
 	$(function(){
 		return $.get({
@@ -98,6 +98,7 @@ function fetch(url, func){
 				if(typeof response.toast != undefined && response.toast != null){
 					toast(response.toast);
 				}
+				// Reload event listeners
 				func(response);
 				ajaxData();
 				registerFromEvents();
@@ -114,6 +115,7 @@ function toast(str){
 	$('body').append('<div class="toast">'+str+'</div>');
 }
 
+// Relace the main tag with new data from ajax response, and set the url to corespondant url
 function ajaxData(){
 	$('[data-ajax]').off('click');
 	$('[data-ajax]').click(function(){
@@ -126,16 +128,6 @@ function ajaxData(){
 	});
 }
 
-// window.onpopstate = function(e){
-// 	if(e.state){
-// 		fetch(e.state, function(response){
-// 			$('main').html(response);
-// 			console.log(e.state)
-// 			window.history.pushState(e.state, 'Title', e.state);
-// 			document.title = e.state;
-// 		});
-// 	}
-// };
 
 // Activate navigation drawer when hamburger is clicked
 function refreshMenu(){
@@ -233,6 +225,7 @@ function item_delete(form){
 	$(form).parent().parent().parent().slideUp();
 }
 // This is run when the form sith type="submit" and name="create_item"
-function create_item(){
-
+function create_item(elm){
+	// Redirect to new page when item was created
+	if(this.id != null) location.href = "/item/"+this.id;
 }

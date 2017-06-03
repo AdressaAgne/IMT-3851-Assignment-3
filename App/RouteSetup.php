@@ -39,7 +39,6 @@
 Direct::get("/", 'MainController@index');
 
 // login logout
-Direct::get("/login", 'LoginController@login');
 Direct::post("/login", 'LoginController@login_action');
 Direct::get("/logout", 'LoginController@logout');
 

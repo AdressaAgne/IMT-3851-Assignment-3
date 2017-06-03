@@ -12,6 +12,6 @@ block content
 				br
 				select(multiple, name="cats[]"): each $cat in $global->cats_with_ids()
 					option(value=$cat['id']) #{$cat['name']}
-				button.dark(type='submit') Post item
+				button.dark(type='submit', name='create_item') Post item
 				
 	- Render::formend()
