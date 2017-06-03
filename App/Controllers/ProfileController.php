@@ -56,6 +56,7 @@ class ProfileController extends Controller {
 		return ['toast' => 'Something happend, try again later'];
 	}
 
+	// patch request, update password
 	public function patch(Request $data){
 		return Account::changePassword(parent::$site_wide_vars['user'], $data->post->old_pw, $data->post->new_pw, $data->post->new_pw2);
 	}

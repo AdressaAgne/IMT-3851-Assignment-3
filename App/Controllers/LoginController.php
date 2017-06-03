@@ -10,6 +10,7 @@ class LoginController extends Controller {
 		return View::make('login');
 	}
 
+	// Login post request
 	public function login_action(Request $data){
 
 		$msg = Account::login($data->post->username, $data->post->password);
@@ -17,8 +18,8 @@ class LoginController extends Controller {
 		return ['toast' => $msg,];
 	}
 
+	// Register View
 	public function register(){
-
 		return View::make('register');
 	}
 
@@ -49,6 +50,7 @@ class LoginController extends Controller {
 		return ['status' => $user];
 	}
 
+	// Menu view, fetched with ajax to get the new menu
 	public function menu(){
 		return View::make('layout.menu');
 	}

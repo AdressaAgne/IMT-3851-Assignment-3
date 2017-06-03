@@ -266,6 +266,50 @@ This is my sacred collection and I want to give away to the right person.',
 				'item_id' => 4,
 				'category_id' => 10,
 			],
+			[
+				'item_id' => 4,
+				'category_id' => 4,
+			],
+			[
+				'item_id' => 5,
+				'category_id' => 2,
+			],
+			[
+				'item_id' => 6,
+				'category_id' => 4,
+			],
+			[
+				'item_id' => 7,
+				'category_id' => 10,
+			],
+			[
+				'item_id' => 7,
+				'category_id' => 8,
+			],
+			[
+				'item_id' => 8,
+				'category_id' => 3,
+			],
+			[
+				'item_id' => 9,
+				'category_id' => 1,
+			],
+			[
+				'item_id' => 10,
+				'category_id' => 1,
+			],
+			[
+				'item_id' => 10,
+				'category_id' => 2,
+			],
+			[
+				'item_id' => 10,
+				'category_id' => 3,
+			],
+			[
+				'item_id' => 10,
+				'category_id' => 4,
+			],
 		]);
 
 	}

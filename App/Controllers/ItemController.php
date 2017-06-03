@@ -5,6 +5,7 @@ use Controller, Request, View, Account, Direct;
 
 class ItemController extends Controller {
 
+	// Base sql to fetch items
 	public $sql = "SELECT
 		i.*,
 		GROUP_CONCAT(c.name) AS categories,
@@ -35,9 +36,11 @@ class ItemController extends Controller {
 		return $this->index();
 	}
 
+	// create an item, view, return to index if not logged in
 	public function create(){
-		if(Account::isLoggedIn())
-			return View::make('item.create');
+		if(Account::isLoggedIn()) return $this->index();
+
+		return View::make('item.create');
 	}
 
 	// Edit item view
@@ -134,6 +137,7 @@ class ItemController extends Controller {
 	}
 
 
+	// Updated an item to be taken/gone
 	public function taken(Request $data){
 		if(!Account::isLoggedIn()) return ['toast' => 'You need to login'];
 

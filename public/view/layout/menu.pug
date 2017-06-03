@@ -38,7 +38,7 @@ if (!Account::isLoggedIn())
 			- Render::formend()
 	li
 		.icon: include ../svg/register
-		a(data-ajax='/register') Register
+		a(href='/register') Register
 if (Account::isLoggedIn() && $user->isAdmin())
 	li
 		.icon: include ../svg/wrench

@@ -37,11 +37,13 @@
 
 // Frontpage
 Direct::get("/", 'MainController@index');
-Direct::get("/login", 'LoginController@login');
 
+// login logout
+Direct::get("/login", 'LoginController@login');
 Direct::post("/login", 'LoginController@login_action');
 Direct::get("/logout", 'LoginController@logout');
 
+// Menu ajax fetch
 Direct::get('/menu', 'LoginController');
 
 //Items
@@ -53,6 +55,8 @@ Direct::put('/item/create', 'ItemController@put');
 Direct::get('/item/create', 'ItemController@create');
 Direct::patch('/item/edit', 'ItemController@patch');
 Direct::patch('/item/taken', 'ItemController@taken');
+
+// Regiser user
 Direct::get('/register', 'LoginController@register');
 Direct::put('/register', 'LoginController@save');
 
@@ -60,7 +64,6 @@ Direct::put('/register', 'LoginController@save');
 Direct::get('/category/{cat?}', 'ItemController@categories');
 
 // Profile
-
 Direct::get('/profile/{username?}', 'ProfileController@index');
 Direct::get('/profile/edit', 'ProfileController@edit');
 Direct::patch('/profile/edit', 'ProfileController@store');
@@ -78,7 +81,7 @@ Direct::delete('/admin/cats', 'AdminController@delete_cat');
 Direct::put('/admin/cats', 'AdminController@put_cat');
 Direct::delete('/admin/user', 'AdminController@delete_user');
 
-// Debug routes
+// Debug routes, will only work when config::$debug_mode = true
 Direct::debug('/migrate', 'MainController');
 
 

@@ -14,6 +14,7 @@ class AdminController extends Controller {
 		]);
 	}
 
+	// Ajax, delete category
 	public function delete_cat(Request $data){
 		if(!Account::isLoggedIn() && $this->user->isAdmin()) ['toast' => 'You need to be an Admin to do that'];
 		if(empty($data->post->id)) return ['toast' => 'Hidden value id can not be empty'];
@@ -22,6 +23,7 @@ class AdminController extends Controller {
 		return ['toast' => 'Category Deleted'];
 	}
 
+	// Ajax, delete user
 	public function delete_user(Request $data){
 		if(!Account::isLoggedIn() && $this->user->isAdmin()) ['toast' => 'You need to be an Admin to do that'];
 		if(empty($data->post->id)) return ['toast' => 'Hidden value id can not be empty'];
@@ -30,6 +32,7 @@ class AdminController extends Controller {
 		return ['toast' => 'User Deleted'];
 	}
 
+	// ajax add category
 	public function put_cat(Request $data){
 		if(!Account::isLoggedIn() && $this->user->isAdmin()) ['toast' => 'You need to be an Admin to do that'];
 		if(empty($data->post->name)) return ['toast' => 'Please enter a category name'];
